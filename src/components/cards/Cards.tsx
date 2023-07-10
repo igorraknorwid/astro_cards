@@ -8,6 +8,7 @@ import { ICard } from "../../types/card";
 import YearTitle from "../common/year_title/YearTitle";
 import Spinner from "../common/spinner/Spinner";
 import CardCounter from "../card_couter/CardCounter";
+import CardList from "./card_list/CardList";
 
 function Cards() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -43,6 +44,7 @@ function Cards() {
     <div className='m-10'>
       <YearTitle year={year} />
       <CardCounter cards={data} />
+      <CardList cards={data} itemsPerPage={5} />
       {/* <CategoryNavigation cards={data} year={year} />
       <TitleNavigation cards={data} year={year} />
       <CardList cards={data} itemsPerPage={5} /> */}
