@@ -8,7 +8,7 @@ import { ICard } from "../../types/card";
 import YearTitle from "../common/year_title/YearTitle";
 import Spinner from "../common/spinner/Spinner";
 import CardCounter from "../card_couter/CardCounter";
-import CardList from "./card_list/CardList";
+import CardList from "../common/card_list/CardList";
 
 function Cards() {
   const [data, setData] = React.useState<ICard[] | null>(null);
