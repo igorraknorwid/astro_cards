@@ -1,5 +1,5 @@
 import React from "react";
-import { ICard } from "../../types/card";
+import { ICard } from "../../../types/card";
 
 interface IPagination {
   cards: ICard[];

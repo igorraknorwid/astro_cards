@@ -1,10 +1,8 @@
 import React from "react";
 import client from "../../api/sanityClient";
 import { ICard } from "../../types/card";
-// import CardList from "../../card_list/CardList";
-// import CategoryNavigation from "../../navigation/CategoryNavigation";
-// import TitleNavigation from "../../navigation/TitleNavigation";
-// import CardCounter from "../../card_couter/CardCounter";
+import CategoryNavigation from "../navigation/CategoryNavigation";
+import TitleNavigation from "../navigation//TitleNavigation";
 import YearTitle from "../common/year_title/YearTitle";
 import Spinner from "../common/spinner/Spinner";
 import CardCounter from "../card_couter/CardCounter";
@@ -44,10 +42,9 @@ function Cards() {
     <div className='m-10'>
       <YearTitle year={year} />
       <CardCounter cards={data} />
-      <CardList cards={data} itemsPerPage={5} />
-      {/* <CategoryNavigation cards={data} year={year} />
+      <CategoryNavigation cards={data} year={year} />
       <TitleNavigation cards={data} year={year} />
-      <CardList cards={data} itemsPerPage={5} /> */}
+      <CardList cards={data} itemsPerPage={5} />
     </div>
   );
 }
