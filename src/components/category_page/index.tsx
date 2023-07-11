@@ -1,17 +1,22 @@
 import React from "react";
-import client from "../../api/sanityClient";
 import { ICard } from "../../types/card";
+import client from "../../api/sanityClient";
 import YearTitle from "../common/year_title/YearTitle";
 import Spinner from "../common/spinner/Spinner";
 import CardCounter from "../card_couter/CardCounter";
 import CardList from "../common/card_list/CardList";
-import CategoryNavigation from "../navigation/CategoryNavigation";
-import TitleNavigation from "../navigation//TitleNavigation";
+import TitleFilter from "../filters/TitleFilter";
 
-function Cards() {
+function CardsByCategory() {
   const [data, setData] = React.useState<ICard[] | null>(null);
+  const [filter, setFilter] = React.useState<string | null>(null);
   const [isError, setIsError] = React.useState<boolean>(false);
   const [year, setYear] = React.useState<string | null>(null);
+  const [category, setCategory] = React.useState<string | null>(null);
+
+  const setDataFilter = (value: string | null) => {
+    setFilter(value);
+  };
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +24,9 @@ function Cards() {
         const queryParams = new URLSearchParams(window.location.search);
         const year = queryParams.get("rok");
         setYear(year);
-        const query = `*[_type == "card" && '${year}' in years[]->title]{ _id, title,image_slug,theme->{title},
+        const category = queryParams.get("temat");
+        setCategory(category);
+        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id, title,image_slug,theme->{title},
       }`;
         const result = await client.fetch<ICard[]>(query);
         setData(result);
@@ -31,6 +38,14 @@ function Cards() {
     fetchData();
   }, []);
 
+  const filteredData = data?.filter((item) => {
+    if (filter === null) {
+      return true;
+    } else {
+      return item.title === filter;
+    }
+  });
+
   if (!data)
     return (
       <div>
@@ -41,12 +56,12 @@ function Cards() {
   return (
     <div className='m-10'>
       <YearTitle year={year} />
-      <CardCounter cards={data} />
-      <CategoryNavigation cards={data} year={year} />
-      <TitleNavigation cards={data} year={year} />
-      <CardList cards={data} itemsPerPage={5} />
+      <p>Temat:{category}</p>
+      <CardCounter cards={filteredData} />
+      <TitleFilter cards={data} dataHandler={setDataFilter} />
+      {filteredData && <CardList cards={filteredData} itemsPerPage={5} />}
     </div>
   );
 }
 
-export default Cards;
+export default CardsByCategory;

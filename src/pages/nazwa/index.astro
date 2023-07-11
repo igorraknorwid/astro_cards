@@ -1,7 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import CardsByTitle from "../../components/title_page/index";
 ---
 
 <Layout title='Kartki bibliograficzne'>
-  <main>Nazwa</main>
+  <main>
+    <CardsByTitle client:load />
+  </main>
 </Layout>
