@@ -1,6 +1,10 @@
 import React from "react";
 import { ICard } from "../../../types/card";
 import Modal from "./Modal";
+import {
+  MODAL_BUTTON,
+  MODAL_IMG,
+} from "../../../utils/constants/modal_classes";
 
 interface ICardComponent {
   card: ICard;
@@ -17,8 +21,17 @@ function setBodyScroll(isOpen: boolean) {
 
 function Card({ card }: ICardComponent) {
   const [isModal, setIsModal] = React.useState(false);
-  const expandClickHandler = () => {
-    setIsModal((s) => !s);
+  const expandClickHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const targetElement = e.target as Element;
+    const elementClass = targetElement.classList[0];
+    if (elementClass === MODAL_BUTTON) {
+      setIsModal((s) => !s);
+      return;
+    }
+
+    if (elementClass !== MODAL_IMG) {
+      setIsModal((s) => !s);
+    }
   };
   React.useEffect(() => {
     //set overflow
@@ -31,13 +44,7 @@ function Card({ card }: ICardComponent) {
         {card.title}-{card.theme.title}
       </div>
       <button onClick={expandClickHandler}>Expand</button>
-      {isModal && (
-        <Modal
-          card={card}
-          expandClickHandler={expandClickHandler}
-          isModal={isModal}
-        />
-      )}
+      {isModal && <Modal card={card} expandClickHandler={expandClickHandler} />}
     </li>
   );
 }
