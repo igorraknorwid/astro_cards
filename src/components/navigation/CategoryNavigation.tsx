@@ -19,7 +19,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
     <ul className='flex gap-x-4 border'>
       {items.map((c, i) => (
         <li key={i}>
-          <a href={`/category?year=${year}&category=${c.title}`}>
+          <a href={`/temat?rok=${year}&temat=${c.title}`}>
             <div className='flex gap-x-2'>
               <div>{c.title}</div>
               <div>

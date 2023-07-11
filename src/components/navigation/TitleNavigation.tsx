@@ -18,7 +18,7 @@ function TitleNavigation({ cards, year }: INavigation) {
     <ul className='flex gap-x-4 border border-red-500'>
       {items.map((c, i) => (
         <li key={i}>
-          <a href={`/title?year=${year}&title=${c.title}`}>
+          <a href={`/nazwa?rok=${year}&nazwa=${c.title}`}>
             <div className='flex gap-x-2'>
               <div>{c.title}</div>
               <div>

@@ -36,7 +36,7 @@ function Years() {
     <div className='m-10'>
       {sortedData?.map((item) => (
         <li key={item._id}>
-          <a href={`/cards?year=${item.title}`}>{item.title}</a>
+          <a href={`/kartki?rok=${item.title}`}>{item.title}</a>
         </li>
       ))}
     </div>

@@ -17,7 +17,7 @@ function Cards() {
     const fetchData = async () => {
       try {
         const queryParams = new URLSearchParams(window.location.search);
-        const year = queryParams.get("year");
+        const year = queryParams.get("rok");
         setYear(year);
         const query = `*[_type == "card" && '${year}' in years[]->title]{ _id, title,image_slug,theme->{title},
       }`;
