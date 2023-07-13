@@ -16,7 +16,7 @@ function Pagination({
 }: IPagination) {
   return (
     <section>
-      <div>
+      <div className='flex gap-x-2 text-lg justify-center'>
         {Array.from(
           { length: Math.ceil(cards.length / itemsPerPage) },
           (_, index) => index + 1

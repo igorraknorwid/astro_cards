@@ -53,7 +53,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
   });
 
   return (
-    <ul className='flex gap-x-4 border'>
+    <ul className='flex gap-x-4 border flex-wrap text-sm'>
       {items.map((c, i) => (
         <li key={i}>
           <a href={`/temat?rok=${year}&temat=${c.title}`}>
