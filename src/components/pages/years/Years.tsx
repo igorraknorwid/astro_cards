@@ -15,7 +15,7 @@ function Years() {
       try {
         const query = `*[_type == "year"]{ _id,
           title,
-        }`; // Replace 'YOUR_DOCUMENT_TYPE' with your actual Sanity document type
+        }`;
         const result = await client.fetch<IYear[]>(query);
         setData(result);
       } catch (error) {
@@ -33,12 +33,15 @@ function Years() {
   if (!data) return <div>...LOADING</div>;
   if (isError) return <div>"Error fetching data from Sanity:"</div>;
   return (
-    <div className='m-10'>
-      {sortedData?.map((item) => (
-        <li key={item._id}>
-          <a href={`/kartki?rok=${item.title}`}>{item.title}</a>
-        </li>
-      ))}
+    <div className='py-5 mx-2 md:mx-[10%] flex flex-col items-center md:items-start gap-y-4'>
+      {/* <p className='font-bold text-xl uppercase'>Dostępne roczniki:</p> */}
+      <ul className='flex flex-col gap-y-3 text-lg font-thin items-center md:items-start '>
+        {sortedData?.map((item) => (
+          <li className='hover:underline' key={item._id}>
+            <a href={`/kartki?rok=${item.title}`}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

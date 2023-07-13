@@ -45,7 +45,7 @@ function Cards() {
     );
   if (isError) return <div>Error fetching data from Sanity!</div>;
   return (
-    <div className='m-10'>
+    <div className='mx-2 md:mx-[10%]'>
       <YearTitle year={year} />
       <CardCounter cards={data} />
       <CategoryNavigation cards={data} year={year} />

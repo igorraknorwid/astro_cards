@@ -16,9 +16,20 @@ const { title } = Astro.props;
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
-    <h1>Bibliografia Ziemi Lubuskiej</h1>
-    <slot />
+  <body class='flex flex-col min-h-screen'>
+    <header class='flex-none bg-sky-600 text-white py-5 font-bold'>
+      <div class='mx-2 md:mx-[10%]'>
+        <h1 class='text-lg md:text-3xl'>
+          <a href='/' title='home'>Bibliografia Ziemi Lubuskiej 1945-1989</a>
+        </h1>
+      </div>
+    </header>
+    <main class='bg-slate-200 flex-1'>
+      <slot />
+    </main>
+    <footer class='flex-none bg-sky-600 text-white py-5 font-bold'>
+      <div class='mx-2 md:mx-[10%]'><a href='/about'>O projekcie</a></div>
+    </footer>
   </body>
 </html>
 <style is:global>

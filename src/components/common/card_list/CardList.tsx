@@ -16,7 +16,6 @@ function CardList({
   currentPage,
   setCurrentPage,
 }: ICardList) {
-  // const [currentPage, setCurrentPage] = React.useState(1);
   const paginatedCards = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
