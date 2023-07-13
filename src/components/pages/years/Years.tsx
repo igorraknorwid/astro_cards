@@ -1,5 +1,5 @@
 import React from "react";
-import client from "../../api/sanityClient";
+import client from "../../../api/sanityClient";
 
 interface IYear {
   _id: string;

@@ -1,22 +1,29 @@
 import React from "react";
-import { ICard } from "../../types/card";
-import client from "../../api/sanityClient";
-import YearTitle from "../common/year_title/YearTitle";
-import Spinner from "../common/spinner/Spinner";
-import CardCounter from "../card_couter/CardCounter";
-import CardList from "../common/card_list/CardList";
-import TitleFilter from "../filters/TitleFilter";
+import { ICard } from "../../../types/card";
+import client from "../../../api/sanityClient";
+import YearTitle from "../../common/year_title/YearTitle";
+import Spinner from "../../common/spinner/Spinner";
+import CardCounter from "../../common/card_couter/CardCounter";
+import CardList from "../../common/card_list/CardList";
+import CategoryFilter from "../../filters/CategoryFilter";
 
-function CardsByCategory() {
+function CardsByTitle() {
   const [data, setData] = React.useState<ICard[] | null>(null);
-  const [filter, setFilter] = React.useState<string | null>(null);
   const [isError, setIsError] = React.useState<boolean>(false);
+  const [filter, setFilter] = React.useState<string | null>(null);
   const [year, setYear] = React.useState<string | null>(null);
-  const [category, setCategory] = React.useState<string | null>(null);
+  const [title, setTitle] = React.useState<string | null>(null);
 
   const setDataFilter = (value: string | null) => {
     setFilter(value);
   };
+  const filteredData = data?.filter((item) => {
+    if (filter === null) {
+      return true;
+    } else {
+      return item.theme.title === filter;
+    }
+  });
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -24,9 +31,9 @@ function CardsByCategory() {
         const queryParams = new URLSearchParams(window.location.search);
         const year = queryParams.get("rok");
         setYear(year);
-        const category = queryParams.get("temat");
-        setCategory(category);
-        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id, title,image_slug,theme->{title},
+        const title = queryParams.get("nazwa");
+        setTitle(title);
+        const query = `*[_type == 'card' && '${year}' in years[]->title && title == '${title}']{ _id, title,image_slug,theme->{title},
       }`;
         const result = await client.fetch<ICard[]>(query);
         setData(result);
@@ -36,15 +43,7 @@ function CardsByCategory() {
       }
     };
     fetchData();
-  }, []);
-
-  const filteredData = data?.filter((item) => {
-    if (filter === null) {
-      return true;
-    } else {
-      return item.title === filter;
-    }
-  });
+  }, [year, title]);
 
   if (!data)
     return (
@@ -56,12 +55,12 @@ function CardsByCategory() {
   return (
     <div className='m-10'>
       <YearTitle year={year} />
-      <p>Temat:{category}</p>
+      <p>Nazwa:{title}</p>
       <CardCounter cards={filteredData} />
-      <TitleFilter cards={data} dataHandler={setDataFilter} />
+      <CategoryFilter cards={data} dataHandler={setDataFilter} />
       {filteredData && <CardList cards={filteredData} itemsPerPage={5} />}
     </div>
   );
 }
 
-export default CardsByCategory;
+export default CardsByTitle;
