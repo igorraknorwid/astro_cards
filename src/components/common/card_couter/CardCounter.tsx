@@ -14,7 +14,7 @@ function CardCounter({ cards }: ICardCounter) {
   return (
     <>
       {cards && (
-        <div>
+        <div className='text-center text-lg my-2'>
           {cards.length} {setKartki(cards.length)}
         </div>
       )}

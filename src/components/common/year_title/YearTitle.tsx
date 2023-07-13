@@ -5,7 +5,7 @@ interface IYearTitle {
 }
 
 function YearTitle({ year }: IYearTitle) {
-  return <h1 className='font-bold text-2xl'>Rok {year} </h1>;
+  return <h1 className='font-bold text-3xl text-center my-2'>Rok {year} </h1>;
 }
 
 export default YearTitle;

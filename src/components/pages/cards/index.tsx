@@ -39,7 +39,7 @@ function Cards() {
 
   if (!data)
     return (
-      <div>
+      <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
         <Spinner />
       </div>
     );
@@ -49,13 +49,19 @@ function Cards() {
       <YearTitle year={year} />
       <CardCounter cards={data} />
       <CategoryNavigation cards={data} year={year} />
-      <TitleNavigation cards={data} year={year} />
-      <CardList
-        cards={data}
-        itemsPerPage={5}
-        currentPage={currentPage}
-        setCurrentPage={currentPageHandler}
-      />
+      <div className='flex flex-col md:flex-row'>
+        <div className=' basis-3/4'>
+          <CardList
+            cards={data}
+            itemsPerPage={5}
+            currentPage={currentPage}
+            setCurrentPage={currentPageHandler}
+          />
+        </div>
+        <div className='basis-1/4'>
+          <TitleNavigation cards={data} year={year} />
+        </div>
+      </div>
     </div>
   );
 }
