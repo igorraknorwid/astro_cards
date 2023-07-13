@@ -51,7 +51,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
       };
     }
   });
-  console.log("items", items);
+
   return (
     <ul className='flex gap-x-4 border'>
       {items.map((c, i) => (

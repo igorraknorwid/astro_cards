@@ -13,6 +13,7 @@ function CardsByCategory() {
   const [isError, setIsError] = React.useState<boolean>(false);
   const [year, setYear] = React.useState<string | null>(null);
   const [category, setCategory] = React.useState<string | null>(null);
+  const [subCategory, setSubCategory] = React.useState<string | null>(null);
 
   const setDataFilter = (value: string | null) => {
     setFilter(value);
@@ -26,9 +27,15 @@ function CardsByCategory() {
         setYear(year);
         const category = queryParams.get("temat");
         setCategory(category);
+        const subcategory = queryParams.get("subtemat");
+        setSubCategory(subcategory);
+        console.log(subcategory);
         const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id, title,image_slug,theme->{title},
       }`;
-        const result = await client.fetch<ICard[]>(query);
+        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id, title,image_slug,theme->{title}}`;
+        const result = await client.fetch<ICard[]>(
+          subcategory ? queryWithSubcategory : query
+        );
         setData(result);
       } catch (error) {
         setIsError(true);
@@ -53,10 +60,21 @@ function CardsByCategory() {
       </div>
     );
   if (isError) return <div>Error fetching data from Sanity!</div>;
+
   return (
     <div className='m-10'>
       <YearTitle year={year} />
-      <p>Temat:{category}</p>
+      <div className='flex gap-x-2'>
+        <p>
+          Temat:<span className='font-bold'>{category}</span>
+        </p>
+        {subCategory && (
+          <p>
+            Temat dodatkowy:<span className='font-bold'>{subCategory}</span>
+          </p>
+        )}
+      </div>
+
       <CardCounter cards={filteredData} />
       <TitleFilter cards={data} dataHandler={setDataFilter} />
       {filteredData && <CardList cards={filteredData} itemsPerPage={5} />}
