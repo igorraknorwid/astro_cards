@@ -1,5 +1,6 @@
 import React from "react";
 import client from "../../../api/sanityClient";
+import Spinner from "../../common/spinner/Spinner";
 
 interface IYear {
   _id: string;
@@ -30,7 +31,12 @@ function Years() {
     (a, b) => parseInt(a.title) - parseInt(b.title)
   );
 
-  if (!data) return <div>...LOADING</div>;
+  if (!data)
+    return (
+      <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
+        <Spinner />
+      </div>
+    );
   if (isError) return <div>"Error fetching data from Sanity:"</div>;
   return (
     <div className='py-5 mx-2 md:mx-[10%] flex flex-col items-center md:items-start gap-y-4'>

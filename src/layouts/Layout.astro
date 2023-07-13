@@ -17,18 +17,20 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class='flex flex-col min-h-screen'>
-    <header class='flex-none bg-sky-600 text-white py-5 font-bold'>
+    <header class='flex-none bg-blue-600 text-white py-5 font-bold'>
       <div class='mx-2 md:mx-[10%]'>
         <h1 class='text-lg md:text-3xl'>
           <a href='/' title='home'>Bibliografia Ziemi Lubuskiej 1945-1989</a>
         </h1>
       </div>
     </header>
-    <main class='bg-slate-200 flex-1'>
+    <main class='text-sm bg-gray-100 flex-1'>
       <slot />
     </main>
-    <footer class='flex-none bg-sky-600 text-white py-5 font-bold'>
-      <div class='mx-2 md:mx-[10%]'><a href='/about'>O projekcie</a></div>
+    <footer class='flex-none bg-blue-600 text-white py-5 font-bold'>
+      <div class='mx-2 md:mx-[10%]'>
+        <a class='uppercase' href='/about'>O projekcie</a>
+      </div>
     </footer>
   </body>
 </html>
