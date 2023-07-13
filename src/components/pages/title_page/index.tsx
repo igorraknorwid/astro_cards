@@ -13,6 +13,11 @@ function CardsByTitle() {
   const [filter, setFilter] = React.useState<string | null>(null);
   const [year, setYear] = React.useState<string | null>(null);
   const [title, setTitle] = React.useState<string | null>(null);
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const currentPageHandler = (value: number) => {
+    setCurrentPage(value);
+  };
 
   const setDataFilter = (value: string | null) => {
     setFilter(value);
@@ -58,7 +63,14 @@ function CardsByTitle() {
       <p>Nazwa:{title}</p>
       <CardCounter cards={filteredData} />
       <CategoryFilter cards={data} dataHandler={setDataFilter} />
-      {filteredData && <CardList cards={filteredData} itemsPerPage={5} />}
+      {filteredData && (
+        <CardList
+          cards={filteredData}
+          itemsPerPage={5}
+          currentPage={currentPage}
+          setCurrentPage={currentPageHandler}
+        />
+      )}
     </div>
   );
 }

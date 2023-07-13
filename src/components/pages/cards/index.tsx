@@ -12,6 +12,11 @@ function Cards() {
   const [data, setData] = React.useState<ICard[] | null>(null);
   const [isError, setIsError] = React.useState<boolean>(false);
   const [year, setYear] = React.useState<string | null>(null);
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const currentPageHandler = (value: number) => {
+    setCurrentPage(value);
+  };
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +50,12 @@ function Cards() {
       <CardCounter cards={data} />
       <CategoryNavigation cards={data} year={year} />
       <TitleNavigation cards={data} year={year} />
-      <CardList cards={data} itemsPerPage={5} />
+      <CardList
+        cards={data}
+        itemsPerPage={5}
+        currentPage={currentPage}
+        setCurrentPage={currentPageHandler}
+      />
     </div>
   );
 }
