@@ -8,6 +8,7 @@ export interface ICard {
   title: string;
   image_slug: string;
   theme: ITheme;
+  subtheme?: ITheme;
 }
 
 export interface INavigation {
