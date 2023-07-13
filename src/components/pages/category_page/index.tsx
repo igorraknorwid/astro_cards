@@ -14,9 +14,15 @@ function CardsByCategory() {
   const [year, setYear] = React.useState<string | null>(null);
   const [category, setCategory] = React.useState<string | null>(null);
   const [subCategory, setSubCategory] = React.useState<string | null>(null);
+  const [currentPage, setCurrentPage] = React.useState(1);
+
+  const currentPageHandler = (value: number) => {
+    setCurrentPage(value);
+  };
 
   const setDataFilter = (value: string | null) => {
     setFilter(value);
+    setCurrentPage(1);
   };
 
   React.useEffect(() => {
@@ -77,7 +83,14 @@ function CardsByCategory() {
 
       <CardCounter cards={filteredData} />
       <TitleFilter cards={data} dataHandler={setDataFilter} />
-      {filteredData && <CardList cards={filteredData} itemsPerPage={5} />}
+      {filteredData && (
+        <CardList
+          cards={filteredData}
+          itemsPerPage={5}
+          currentPage={currentPage}
+          setCurrentPage={currentPageHandler}
+        />
+      )}
     </div>
   );
 }

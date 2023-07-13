@@ -6,10 +6,17 @@ import Pagination from "./Pagination";
 interface ICardList {
   cards: ICard[];
   itemsPerPage: number;
+  currentPage: number;
+  setCurrentPage: (value: number) => void;
 }
 
-function CardList({ cards, itemsPerPage }: ICardList) {
-  const [currentPage, setCurrentPage] = React.useState(1);
+function CardList({
+  cards,
+  itemsPerPage,
+  currentPage,
+  setCurrentPage,
+}: ICardList) {
+  // const [currentPage, setCurrentPage] = React.useState(1);
   const paginatedCards = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
