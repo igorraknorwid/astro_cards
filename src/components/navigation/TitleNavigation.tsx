@@ -27,6 +27,7 @@ function TitleNavigation({ cards, year }: INavigation) {
     });
 
     const alfabet = segregateArrayByTitle(items);
+
     setData(alfabet);
   }, [cards]);
 
@@ -52,52 +53,45 @@ function TitleNavigation({ cards, year }: INavigation) {
     }
   };
 
+  const find = data?.find((item) => item.isActive === true);
+
   return (
     <div>
-      {/* <ul className='flex flex-col gap-y-2 gap-x-4 border border-red-500 text-lg'>
-        {items.map((c, i) => (
-          <li key={i}>
-            <a href={`/nazwa?rok=${year}&nazwa=${c.title}`}>
-              <div className='flex gap-x-2'>
-                <div>{c.title}</div>
-                <div>
-                  {c.total ? <div className='underline'>{c.total}</div> : null}
-                </div>
-              </div>
-            </a>
-          </li>
-        ))}
-      </ul> */}
-      <ul>
+      <ul className='grid grid-cols-4 gap-2'>
         {data?.map((item, i) => (
           <li key={i}>
             <div>
               <button
-                className='font-bold'
+                className={`p-4 font-bold border rounded-lg ${
+                  item.isActive && "bg-blue-600 text-white"
+                }`}
                 onClick={() => {
                   clickHandler(item);
                 }}
               >
                 {item.letter}
               </button>
-              {item.isActive && (
-                <ul>
-                  {item.items.map((v, i) => (
-                    <li key={i}>
-                      <a href={`/nazwa?rok=${year}&nazwa=${v.title}`}>
-                        <div className='flex gap-x-2'>
-                          <div>{v.title}</div>
-                          <div>{v.total}</div>
-                        </div>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </div>
           </li>
         ))}
       </ul>
+      {find ? (
+        <div className='border'>
+          <p>{find.letter}</p>
+          <ul>
+            {find.items.map((v, i) => (
+              <li key={i}>
+                <a href={`/nazwa?rok=${year}&nazwa=${v.title}`}>
+                  <div className='flex gap-x-2'>
+                    <div>{v.title}</div>
+                    <div>{v.total}</div>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -16,10 +16,17 @@ export function segregateArrayByTitle(
   );
 
   return Object.entries(result)
-    .map(([letter, items]) => ({
+    .map(([letter, items], i) => ({
       letter,
       items,
       isActive: false,
     }))
-    .sort((a, b) => a.letter.localeCompare(b.letter));
+    .sort((a, b) => a.letter.localeCompare(b.letter))
+    .map((item, i) => {
+      if (i === 0) {
+        return { ...item, isActive: true };
+      } else {
+        return { ...item };
+      }
+    });
 }
