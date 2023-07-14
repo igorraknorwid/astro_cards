@@ -39,7 +39,7 @@ function Card({ card }: ICardComponent) {
   }, [isModal]);
   return (
     <li key={card._id} className='p-4 bg-gray-300  border rounded-lg'>
-      <img src={card.image_slug} alt={card.title} width={800} />
+      <img src={card.image_slug} alt={card.title} width={500} />
       <div className='flex justify-between'>
         <div className='flex flex-col gap-y-2 text-sm py-4'>
           <div className=' py-1 px-2 rounded-lg'>
