@@ -38,14 +38,27 @@ function Card({ card }: ICardComponent) {
     setBodyScroll(isModal);
   }, [isModal]);
   return (
-    <li key={card._id} className='p-4 bg-gray-300 text-white border rounded-lg'>
+    <li key={card._id} className='p-4 bg-gray-300  border rounded-lg'>
       <img src={card.image_slug} alt={card.title} width={800} />
-      <div className='flex gap-x-2 text-lg py-4'>
-        <div className='bg-blue-600 py-2 px-4 rounded-lg'>{card.title}</div>
-        <div className='bg-blue-600 py-2 px-4 rounded-lg'>
-          {card.theme.title}
+      <div className='flex justify-between'>
+        <div className='flex flex-col gap-y-2 text-sm py-4'>
+          <div className=' py-1 px-2 rounded-lg'>
+            <span>Nazwa: </span>
+            <span className='font-bold'>{card.title}</span>
+          </div>
+          <div className=' py-1 px-2 rounded-lg'>
+            <span>Temat: </span>
+            <span className='font-bold'>{card.theme.title}</span>
+          </div>
         </div>
-        <button onClick={expandClickHandler}>Expand</button>
+        <div className='flex items-center text-white '>
+          <button
+            className='px-4 py-2 rounded-lg bg-orange-700 uppercase hover:scale-y-110 hover:font-bold transition-transform'
+            onClick={expandClickHandler}
+          >
+            Powienksz zdjncie
+          </button>
+        </div>
       </div>
 
       {isModal && <Modal card={card} expandClickHandler={expandClickHandler} />}
