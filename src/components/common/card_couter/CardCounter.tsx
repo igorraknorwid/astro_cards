@@ -6,16 +6,16 @@ interface ICardCounter {
 }
 
 function CardCounter({ cards }: ICardCounter) {
-  function setKartki(total: number) {
-    if (total < 2) return "kartka";
-    if (total > 1 && total < 5) return "kartki";
-    if (total > 4) return "kartkek";
-  }
+  // function setKartki(total: number) {
+  //   if (total < 2) return "kartka";
+  //   if (total > 1 && total < 5) return "kartki";
+  //   if (total > 4) return "kartkek";
+  // }
   return (
     <>
       {cards && (
         <div className='text-center text-lg my-2'>
-          {cards.length} {setKartki(cards.length)}
+          Iłość kartek: {cards.length}
         </div>
       )}
     </>

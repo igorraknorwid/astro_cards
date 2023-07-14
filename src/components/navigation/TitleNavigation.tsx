@@ -56,13 +56,14 @@ function TitleNavigation({ cards, year }: INavigation) {
   const find = data?.find((item) => item.isActive === true);
 
   return (
-    <div>
-      <ul className='grid grid-cols-4 gap-2'>
+    <div className='m-4 bg-gray-300 p-4 rounded-lg'>
+      <p className='text-center font-bold text-xl p-2'>Kartki wzdłuż nazw:</p>
+      <ul className='grid grid-cols-6 gap-2  bg-white p-2 rounded-lg '>
         {data?.map((item, i) => (
           <li key={i}>
-            <div>
+            <div className='flex justify-center'>
               <button
-                className={`p-4 font-bold border rounded-lg ${
+                className={`px-4 py-2 font-bold border rounded-lg ${
                   item.isActive && "bg-blue-600 text-white"
                 }`}
                 onClick={() => {
@@ -76,9 +77,11 @@ function TitleNavigation({ cards, year }: INavigation) {
         ))}
       </ul>
       {find ? (
-        <div className='border'>
-          <p>{find.letter}</p>
-          <ul>
+        <div className='border mt-5 bg-white '>
+          <p className='bg-blue-600 text-white text-center text-xl p-2'>
+            {find.letter}
+          </p>
+          <ul className='flex flex-col gap-y-2 justify-center items-center p-2 text-lg'>
             {find.items.map((v, i) => (
               <li key={i}>
                 <a href={`/nazwa?rok=${year}&nazwa=${v.title}`}>
