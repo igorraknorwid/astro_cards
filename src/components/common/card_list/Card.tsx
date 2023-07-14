@@ -38,15 +38,16 @@ function Card({ card }: ICardComponent) {
     setBodyScroll(isModal);
   }, [isModal]);
   return (
-    <li
-      key={card._id}
-      className='p-4 bg-slate-900 text-white border md:w-1/2  '
-    >
-      <img src={card.image_slug} alt={card.title} width={300} />
-      <div>
-        {card.title}-{card.theme.title}
+    <li key={card._id} className='p-4 bg-gray-300 text-white border rounded-lg'>
+      <img src={card.image_slug} alt={card.title} width={800} />
+      <div className='flex gap-x-2 text-lg py-4'>
+        <div className='bg-blue-600 py-2 px-4 rounded-lg'>{card.title}</div>
+        <div className='bg-blue-600 py-2 px-4 rounded-lg'>
+          {card.theme.title}
+        </div>
+        <button onClick={expandClickHandler}>Expand</button>
       </div>
-      <button onClick={expandClickHandler}>Expand</button>
+
       {isModal && <Modal card={card} expandClickHandler={expandClickHandler} />}
     </li>
   );
