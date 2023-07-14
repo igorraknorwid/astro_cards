@@ -16,10 +16,11 @@ function CardList({
   currentPage,
   setCurrentPage,
 }: ICardList) {
-  const paginatedCards = () => {
+  const paginatedCards = (cards: ICard[]) => {
+    const arr = [...cards].map((item, i) => ({ ...item, num: i + 1 }));
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return cards.slice(startIndex, endIndex);
+    return arr.slice(startIndex, endIndex);
   };
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -33,12 +34,12 @@ function CardList({
         currentPage={currentPage}
       />
       <ul className='flex flex-col gap-y-2'>
-        {paginatedCards().map((item, i) => (
+        {paginatedCards(cards).map((item) => (
           <div
             key={item._id}
             className='flex gap-x-2 items-center justify-center'
           >
-            <div className='text-xl'>{i + 1}.</div>
+            <div className='text-xl'>{item.num}.</div>
             <Card card={item} />
           </div>
         ))}

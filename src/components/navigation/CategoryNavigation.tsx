@@ -54,6 +54,9 @@ function CategoryNavigation({ cards, year }: INavigation) {
 
   return (
     <div className='m-4 bg-gray-300 py-2 px-4 rounded-lg'>
+      <p className='text-center font-bold text-xl p-2'>
+        Kartki według tematów:
+      </p>
       <ul className='my-2  bg-white py-2 px-4 rounded-lg flex gap-x-4 border flex-wrap text-sm'>
         {items.map((c, i) => (
           <li key={i} className='border py-2 px-4'>

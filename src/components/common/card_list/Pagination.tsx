@@ -15,9 +15,9 @@ function Pagination({
   currentPage,
 }: IPagination) {
   return (
-    <section className='flex justify-center my-4'>
-      <div className='flex gap-x-2 justify-center items-center rounded-lg text-lg bg-gray-300 py-1 px-8'>
-        <p className='text-xl font-bold'>Strony:</p>
+    <section className=' my-4'>
+      <div className='flex gap-x-2 justify-center items-center rounded-lg text-lg bg-gray-300 py-1 md:px-20'>
+        <p className='text-xl font-bold mr-2'>Strony: </p>
         <div className='my-2  bg-white py-2 px-4 rounded-lg flex gap-x-3  justify-center flex-wrap '>
           {Array.from(
             { length: Math.ceil(cards.length / itemsPerPage) },

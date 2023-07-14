@@ -55,7 +55,7 @@ function TitleNavigation({ cards, year }: INavigation) {
 
   return (
     <div className='m-4 bg-gray-300 p-4 rounded-lg'>
-      <p className='text-center font-bold text-xl p-2'>Kartki wzdłuż nazw:</p>
+      <p className='text-center font-bold text-xl p-2'>Kartki według nazw:</p>
       <ul className='grid grid-cols-6 gap-4  bg-white py-2 px-3 rounded-lg '>
         {data?.map((item, i) => (
           <li key={i}>
