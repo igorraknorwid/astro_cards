@@ -25,9 +25,7 @@ function TitleNavigation({ cards, year }: INavigation) {
         total: arrByTitle ? getTotal(arrByTitle, item) : 0,
       };
     });
-
     const alfabet = segregateArrayByTitle(items);
-
     setData(alfabet);
   }, [cards]);
 
@@ -58,7 +56,7 @@ function TitleNavigation({ cards, year }: INavigation) {
   return (
     <div className='m-4 bg-gray-300 p-4 rounded-lg'>
       <p className='text-center font-bold text-xl p-2'>Kartki wzdłuż nazw:</p>
-      <ul className='grid grid-cols-6 gap-2  bg-white p-2 rounded-lg '>
+      <ul className='grid grid-cols-6 gap-4  bg-white py-2 px-3 rounded-lg '>
         {data?.map((item, i) => (
           <li key={i}>
             <div className='flex justify-center'>
@@ -77,13 +75,13 @@ function TitleNavigation({ cards, year }: INavigation) {
         ))}
       </ul>
       {find ? (
-        <div className='border mt-5 bg-white '>
-          <p className='bg-blue-600 text-white text-center text-xl p-2'>
+        <div className=' mt-5 bg-white rounded-lg'>
+          <p className='bg-blue-600 text-white text-center text-xl p-2 rounded-t-lg'>
             {find.letter}
           </p>
           <ul className='flex flex-col gap-y-2 justify-center items-center p-2 text-lg'>
             {find.items.map((v, i) => (
-              <li key={i}>
+              <li key={i} className='hover:scale-105 hover:font-bold'>
                 <a href={`/nazwa?rok=${year}&nazwa=${v.title}`}>
                   <div className='flex gap-x-2'>
                     <div>{v.title}</div>

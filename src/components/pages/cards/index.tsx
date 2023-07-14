@@ -27,7 +27,6 @@ function Cards() {
         const query = `*[_type == "card" && '${year}' in years[]->title]{ _id,title,image_slug,theme->{title,_id},subtheme->{title,_id}
       }`;
         const result = await client.fetch<ICard[]>(query);
-        console.log(result);
         setData(result);
       } catch (error) {
         setIsError(true);
@@ -45,12 +44,12 @@ function Cards() {
     );
   if (isError) return <div>Error fetching data from Sanity!</div>;
   return (
-    <div className='mx-2 md:mx-[10%]'>
+    <div className='mx-2 md:mx-[5%]'>
       <YearTitle year={year} />
       <CardCounter cards={data} />
       <CategoryNavigation cards={data} year={year} />
       <div className='flex flex-col md:flex-row'>
-        <div className=' basis-3/4'>
+        <div className=' basis-2/3'>
           <CardList
             cards={data}
             itemsPerPage={5}
@@ -58,7 +57,7 @@ function Cards() {
             setCurrentPage={currentPageHandler}
           />
         </div>
-        <div className='basis-1/4'>
+        <div className='basis-1/3'>
           <TitleNavigation cards={data} year={year} />
         </div>
       </div>
