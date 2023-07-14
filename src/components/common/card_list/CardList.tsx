@@ -33,8 +33,11 @@ function CardList({
         currentPage={currentPage}
       />
       <ul>
-        {paginatedCards().map((item) => (
-          <Card key={item._id} card={item} />
+        {paginatedCards().map((item, i) => (
+          <div className='flex gap-x-2 items-center'>
+            <div className='text-xl'>{i + 1}.</div>
+            <Card key={item._id} card={item} />
+          </div>
         ))}
       </ul>
       <Pagination
