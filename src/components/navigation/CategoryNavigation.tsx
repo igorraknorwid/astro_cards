@@ -53,36 +53,38 @@ function CategoryNavigation({ cards, year }: INavigation) {
   });
 
   return (
-    <ul className='flex gap-x-4 border flex-wrap text-sm'>
-      {items.map((c, i) => (
-        <li key={i}>
-          <a href={`/temat?rok=${year}&temat=${c.title}`}>
-            <div className='flex gap-x-2 text-xl'>
-              <div>{c.title}</div>
-              <div>
-                {c.total ? <div className='underline'>{c.total}</div> : null}
+    <div className='m-4 bg-gray-300 py-2 px-4 rounded-lg'>
+      <ul className='my-2  bg-white py-2 px-4 rounded-lg flex gap-x-4 border flex-wrap text-sm'>
+        {items.map((c, i) => (
+          <li key={i} className='border py-2 px-4'>
+            <a href={`/temat?rok=${year}&temat=${c.title}`}>
+              <div className='flex gap-x-2 text-xl'>
+                <div>{c.title}</div>
+                <div>
+                  {c.total ? <div className='underline'>{c.total}</div> : null}
+                </div>
               </div>
-            </div>
-          </a>
-          {c.subthemes && (
-            <ul>
-              {c.subthemes.map((subtheme, i) => (
-                <li key={i}>
-                  <a
-                    href={`/temat?rok=${year}&temat=${c.title}&subtemat=${subtheme.title}`}
-                  >
-                    <div className='flex gap-x-2 text-sm'>
-                      <div> {subtheme.title}</div>
-                      <div className='underline'> {subtheme.total}</div>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
+            </a>
+            {c.subthemes && (
+              <ul className='flex flex-col items-end'>
+                {c.subthemes.map((subtheme, i) => (
+                  <li key={i}>
+                    <a
+                      href={`/temat?rok=${year}&temat=${c.title}&subtemat=${subtheme.title}`}
+                    >
+                      <div className='flex gap-x-2 text-sm'>
+                        <div> {subtheme.title}</div>
+                        <div className='underline'> {subtheme.total}</div>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
