@@ -33,7 +33,7 @@ function CardList({
         handlePageChange={handlePageChange}
         currentPage={currentPage}
       />
-      <ul className='flex flex-col gap-y-2'>
+      <ul className='flex flex-col gap-y-2 my-4'>
         {paginatedCards(cards).map((item) => (
           <div
             key={item._id}

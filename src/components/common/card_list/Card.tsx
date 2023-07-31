@@ -53,7 +53,7 @@ function Card({ card }: ICardComponent) {
         </div>
         <div className='flex items-center text-white '>
           <button
-            className='px-4 py-2 rounded-lg bg-orange-700 uppercase hover:scale-y-110 hover:font-bold transition-transform'
+            className='px-4 py-2 rounded-lg bg-blue-700 uppercase hover:scale-y-110 hover:font-bold transition-transform'
             onClick={expandClickHandler}
           >
             Powienksz zdjncie

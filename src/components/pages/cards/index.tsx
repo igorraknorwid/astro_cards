@@ -48,8 +48,8 @@ function Cards() {
       <YearTitle year={year} />
       <CardCounter cards={data} />
       <CategoryNavigation cards={data} year={year} />
-      <div className='flex flex-col md:flex-row'>
-        <div className=' basis-2/3'>
+      <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
+        <div className='basis-2/3'>
           <CardList
             cards={data}
             itemsPerPage={5}

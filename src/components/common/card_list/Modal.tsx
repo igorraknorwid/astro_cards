@@ -18,13 +18,15 @@ function Modal({ card, expandClickHandler }: IModal) {
       }}
       className='fixed top-0 bottom-0 right-0 left-0 bg-black/80 flex flex-col justify-center items-center'
     >
-      <button className={`${MODAL_BUTTON} border`}>Close</button>
-      <img
-        className={MODAL_IMG}
-        src={card.image_slug}
-        alt={card.title}
-        width={1000}
-      />
+      <div className='flex justify-end w-full '>
+        <button
+          className={`${MODAL_BUTTON} text-6xl m-8 text-white hover:scale-110 transition-transform absolute top-0`}
+          type='button'
+        >
+          &#9587;
+        </button>
+      </div>
+      <img className={MODAL_IMG} src={card.image_slug} alt={card.title} />
     </div>
   );
 }
