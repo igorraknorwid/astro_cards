@@ -38,7 +38,7 @@ function Card({ card }: ICardComponent) {
     setBodyScroll(isModal);
   }, [isModal]);
   return (
-    <li key={card._id} className='p-4 bg-gray-300  border rounded-lg'>
+    <div key={card._id} className='p-4 bg-gray-300  border rounded-lg'>
       <img
         className='cursor-pointer'
         onClick={expandClickHandler}
@@ -68,7 +68,7 @@ function Card({ card }: ICardComponent) {
       </div>
 
       {isModal && <Modal card={card} expandClickHandler={expandClickHandler} />}
-    </li>
+    </div>
   );
 }
 

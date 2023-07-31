@@ -1,6 +1,7 @@
 import React from "react";
 import { ICard } from "../../../types/card";
 import { BAGROUNDS, FONTCOLOR } from "../../../utils/constants/colors";
+import NavTitle from "../nav_title/NavTitle";
 
 interface IPagination {
   cards: ICard[];
@@ -24,7 +25,7 @@ function Pagination({
           top ? "rounded-t-lg" : "rounded-b-lg"
         } py-2 md:px-4 ${BAGROUNDS.SECONDARY}`}
       >
-        <p className='text-lg font-bold'>Strony</p>
+        <NavTitle title='Strony' />
         <div
           className={`py-2 px-4 rounded-lg flex gap-3  justify-center flex-wrap ${BAGROUNDS.PASSIVE}`}
         >
@@ -35,11 +36,11 @@ function Pagination({
             <button
               key={pageNumber}
               type='button'
-              className={`px-4 py-2 rounded-lg   ${
+              className={`px-4 py-2 rounded-lg shadow-md  ${
                 pageNumber === currentPage
                   ? `${BAGROUNDS.ACTIVE} ${FONTCOLOR.ACTIVE}`
                   : `border hover:scale-105 hover:${BAGROUNDS.ACTIVE_BORDER} transition-transform`
-              }`}
+              } `}
               onClick={() => handlePageChange(pageNumber)}
             >
               {pageNumber}

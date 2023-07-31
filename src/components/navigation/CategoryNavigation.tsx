@@ -1,5 +1,7 @@
 import React from "react";
 import { ICard, INavigation } from "../../types/card";
+import NavTitle from "../common/nav_title/NavTitle";
+import { BAGROUNDS } from "../../utils/constants/colors";
 
 interface ISubtheme {
   title: string;
@@ -54,14 +56,15 @@ function CategoryNavigation({ cards, year }: INavigation) {
 
   return (
     <div className='bg-blue-200 py-2 px-4 rounded-lg'>
-      <p className='text-center font-bold text-xl p-2'>
-        Kartki według tematów:
-      </p>
-      <ul className='my-2  bg-white py-2 px-4 rounded-lg flex gap-x-4 border flex-wrap text-sm'>
+      <NavTitle title='Kartki według tematów' />
+      <ul className='my-2  bg-white py-2 px-4 rounded-lg flex flex-col items-start gap-4 border text-sm font-mono'>
         {items.map((c, i) => (
-          <li key={i} className='border py-2 px-4'>
+          <li
+            key={i}
+            className={` border basis-auto py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} shadow-md`}
+          >
             <a href={`/temat?rok=${year}&temat=${c.title}`}>
-              <div className='flex gap-x-2 text-xl'>
+              <div className='flex gap-x-2 text-lg'>
                 <div>{c.title}</div>
                 <div>
                   {c.total ? <div className='underline'>{c.total}</div> : null}
@@ -69,7 +72,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
               </div>
             </a>
             {c.subthemes && (
-              <ul className='flex flex-col items-end'>
+              <ul className='flex flex-col items-start'>
                 {c.subthemes.map((subtheme, i) => (
                   <li key={i}>
                     <a

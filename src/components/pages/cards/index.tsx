@@ -47,7 +47,6 @@ function Cards() {
     <div className='mx-2 md:mx-[5%]'>
       <YearTitle year={year} />
       <CardCounter cards={data} />
-      <CategoryNavigation cards={data} year={year} />
       <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
         <div className='basis-2/3 border rounded-lg'>
           <CardList
@@ -57,7 +56,8 @@ function Cards() {
             setCurrentPage={currentPageHandler}
           />
         </div>
-        <div className='basis-1/3'>
+        <div className='basis-1/3 flex flex-col gap-4'>
+          <CategoryNavigation cards={data} year={year} />
           <TitleNavigation cards={data} year={year} />
         </div>
       </div>
