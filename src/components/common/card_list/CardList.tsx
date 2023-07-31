@@ -32,16 +32,17 @@ function CardList({
         itemsPerPage={itemsPerPage}
         handlePageChange={handlePageChange}
         currentPage={currentPage}
+        top={true}
       />
       <ul className='flex flex-col gap-y-2 my-4'>
         {paginatedCards(cards).map((item) => (
-          <div
+          <li
             key={item._id}
             className='flex gap-x-2 items-center justify-center'
           >
             <div className='text-xl'>{item.num}.</div>
             <Card card={item} />
-          </div>
+          </li>
         ))}
       </ul>
       <Pagination
@@ -49,6 +50,7 @@ function CardList({
         itemsPerPage={itemsPerPage}
         handlePageChange={handlePageChange}
         currentPage={currentPage}
+        top={false}
       />
     </section>
   );

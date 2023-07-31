@@ -1,11 +1,13 @@
 import React from "react";
 import { ICard } from "../../../types/card";
+import { BAGROUNDS, FONTCOLOR } from "../../../utils/constants/colors";
 
 interface IPagination {
   cards: ICard[];
   itemsPerPage: number;
   handlePageChange: (pageNumber: number) => void;
   currentPage: number;
+  top: boolean;
 }
 
 function Pagination({
@@ -13,22 +15,30 @@ function Pagination({
   itemsPerPage,
   handlePageChange,
   currentPage,
+  top,
 }: IPagination) {
   return (
     <section>
-      <div className='flex gap-x-2 justify-center items-center rounded-lg text-lg bg-gray-300 py-1 md:px-20'>
-        <p className='text-xl font-bold mr-2'>Strony: </p>
-        <div className='my-2  bg-white py-2 px-4 rounded-lg flex gap-x-3  justify-center flex-wrap '>
+      <div
+        className={`flex flex-col gap-x-2 justify-center items-center ${
+          top ? "rounded-t-lg" : "rounded-b-lg"
+        } py-2 md:px-4 ${BAGROUNDS.SECONDARY}`}
+      >
+        <p className='text-lg font-bold'>Strony</p>
+        <div
+          className={`py-2 px-4 rounded-lg flex gap-3  justify-center flex-wrap ${BAGROUNDS.PASSIVE}`}
+        >
           {Array.from(
             { length: Math.ceil(cards.length / itemsPerPage) },
             (_, index) => index + 1
           ).map((pageNumber) => (
             <button
               key={pageNumber}
-              className={`px-4 py-2  border rounded-full hover:scale-105 hover:font-bold  ${
+              type='button'
+              className={`px-4 py-2 rounded-lg   ${
                 pageNumber === currentPage
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-black"
+                  ? `${BAGROUNDS.ACTIVE} ${FONTCOLOR.ACTIVE}`
+                  : `border hover:scale-105 hover:${BAGROUNDS.ACTIVE_BORDER} transition-transform`
               }`}
               onClick={() => handlePageChange(pageNumber)}
             >

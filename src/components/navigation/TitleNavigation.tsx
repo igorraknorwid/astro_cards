@@ -2,6 +2,7 @@ import React from "react";
 import { INavigation } from "../../types/card";
 import { ITitleItem } from "../../types/title";
 import { segregateArrayByTitle } from "../../utils/segregation";
+import { BAGROUNDS } from "../../utils/constants/colors";
 function getTotal(arr: string[], value: string) {
   return arr.filter((item) => item === value).length;
 }
@@ -54,14 +55,14 @@ function TitleNavigation({ cards, year }: INavigation) {
   const find = data?.find((item) => item.isActive === true);
 
   return (
-    <div className=' bg-gray-300 p-4 rounded-lg'>
-      <p className='text-center font-bold text-xl p-2'>Kartki według nazw:</p>
+    <div className={`${BAGROUNDS.SECONDARY} p-4 rounded-lg`}>
+      <p className='text-center font-bold text-xl p-2'>Kartki według nazw</p>
       <ul className='grid grid-cols-6 gap-4  bg-white py-2 px-3 rounded-lg '>
         {data?.map((item, i) => (
           <li key={i}>
             <div className='flex justify-center'>
               <button
-                className={`px-4 py-2 font-bold border rounded-lg ${
+                className={`px-4 py-2  border rounded-lg ${
                   item.isActive && "bg-blue-600 text-white"
                 }`}
                 onClick={() => {
