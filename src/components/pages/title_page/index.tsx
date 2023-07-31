@@ -6,6 +6,7 @@ import Spinner from "../../common/spinner/Spinner";
 import CardCounter from "../../common/card_couter/CardCounter";
 import CardList from "../../common/card_list/CardList";
 import CategoryFilter from "../../filters/CategoryFilter";
+import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
 
 function CardsByTitle() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -52,25 +53,41 @@ function CardsByTitle() {
 
   if (!data)
     return (
-      <div>
+      <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
         <Spinner />
       </div>
     );
-  if (isError) return <div>Error fetching data from Sanity!</div>;
+  if (isError)
+    return (
+      <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
+        Error fetching data from Sanity!
+      </div>
+    );
   return (
     <div className='m-10'>
       <YearTitle year={year} />
-      <p>Nazwa:{title}</p>
+      <p className='text-center text-lg'>
+        Nazwa:
+        <span className='ml-2 font-bold'>
+          {capitalizeFirstLetterInEveryWord(title)}
+        </span>
+      </p>
       <CardCounter cards={filteredData} />
-      <CategoryFilter cards={data} dataHandler={setDataFilter} />
-      {filteredData && (
-        <CardList
-          cards={filteredData}
-          itemsPerPage={5}
-          currentPage={currentPage}
-          setCurrentPage={currentPageHandler}
-        />
-      )}
+      <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
+        <div className='basis-2/3 border rounded-lg'>
+          {filteredData && (
+            <CardList
+              cards={filteredData}
+              itemsPerPage={5}
+              currentPage={currentPage}
+              setCurrentPage={currentPageHandler}
+            />
+          )}
+        </div>
+        <div className='basis-1/3 flex flex-col gap-4'>
+          <CategoryFilter cards={data} dataHandler={setDataFilter} />
+        </div>
+      </div>
     </div>
   );
 }

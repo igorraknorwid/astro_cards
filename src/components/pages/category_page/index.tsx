@@ -6,6 +6,7 @@ import Spinner from "../../common/spinner/Spinner";
 import CardCounter from "../../common/card_couter/CardCounter";
 import CardList from "../../common/card_list/CardList";
 import TitleFilter from "../../filters/TitleFilter";
+import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
 
 function CardsByCategory() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -61,18 +62,26 @@ function CardsByCategory() {
 
   if (!data)
     return (
-      <div>
+      <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
         <Spinner />
       </div>
     );
-  if (isError) return <div>Error fetching data from Sanity!</div>;
+  if (isError)
+    return (
+      <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
+        Error fetching data from Sanity!
+      </div>
+    );
 
   return (
     <div className='m-10'>
       <YearTitle year={year} />
-      <div className='flex gap-x-2'>
+      <div className='flex gap-x-2 justify-center text-lg'>
         <p>
-          Temat:<span className='font-bold'>{category}</span>
+          Temat:
+          <span className='font-bold'>
+            {capitalizeFirstLetterInEveryWord(category)}
+          </span>
         </p>
         {subCategory && (
           <p>
@@ -82,15 +91,21 @@ function CardsByCategory() {
       </div>
 
       <CardCounter cards={filteredData} />
-      <TitleFilter cards={data} dataHandler={setDataFilter} />
-      {filteredData && (
-        <CardList
-          cards={filteredData}
-          itemsPerPage={5}
-          currentPage={currentPage}
-          setCurrentPage={currentPageHandler}
-        />
-      )}
+      <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
+        <div className='basis-2/3 border rounded-lg'>
+          {filteredData && (
+            <CardList
+              cards={filteredData}
+              itemsPerPage={5}
+              currentPage={currentPage}
+              setCurrentPage={currentPageHandler}
+            />
+          )}
+        </div>
+        <div className='basis-1/3 flex flex-col gap-4'>
+          <TitleFilter cards={data} dataHandler={setDataFilter} />
+        </div>
+      </div>
     </div>
   );
 }
