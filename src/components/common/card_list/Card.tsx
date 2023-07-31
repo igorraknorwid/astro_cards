@@ -5,6 +5,7 @@ import {
   MODAL_BUTTON,
   MODAL_IMG,
 } from "../../../utils/constants/modal_classes";
+import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
 
 interface ICardComponent {
   card: ICard;
@@ -50,11 +51,15 @@ function Card({ card }: ICardComponent) {
         <div className='flex flex-col gap-y-2 text-sm py-4'>
           <div className=' py-1 px-2 rounded-lg'>
             <span>Nazwa: </span>
-            <span className='font-bold'>{card.title}</span>
+            <span className='font-bold'>
+              {capitalizeFirstLetterInEveryWord(card.title)}
+            </span>
           </div>
           <div className=' py-1 px-2 rounded-lg'>
             <span>Temat: </span>
-            <span className='font-bold'>{card.theme.title}</span>
+            <span className='font-bold'>
+              {capitalizeFirstLetterInEveryWord(card.theme.title)}
+            </span>
           </div>
         </div>
         <div className='flex items-center text-white '>

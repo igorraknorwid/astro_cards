@@ -2,7 +2,7 @@ import React from "react";
 import { ICard, INavigation } from "../../types/card";
 import NavTitle from "../common/nav_title/NavTitle";
 import { BAGROUNDS } from "../../utils/constants/colors";
-
+import { capitalizeFirstLetterInEveryWord } from "../../utils/capitalize/capitalise";
 interface ISubtheme {
   title: string;
   total: number;
@@ -61,11 +61,11 @@ function CategoryNavigation({ cards, year }: INavigation) {
         {items.map((c, i) => (
           <li
             key={i}
-            className={` border basis-auto py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} shadow-md`}
+            className={` border basis-auto py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} hover:scale-105 transition-transform shadow-md`}
           >
             <a href={`/temat?rok=${year}&temat=${c.title}`}>
               <div className='flex gap-x-2 text-lg'>
-                <div>{c.title}</div>
+                <div>{capitalizeFirstLetterInEveryWord(c.title)}</div>
                 <div>
                   {c.total ? <div className='underline'>{c.total}</div> : null}
                 </div>

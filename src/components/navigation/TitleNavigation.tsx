@@ -4,6 +4,8 @@ import { ITitleItem } from "../../types/title";
 import { segregateArrayByTitle } from "../../utils/segregation";
 import { BAGROUNDS, FONTCOLOR } from "../../utils/constants/colors";
 import NavTitle from "../common/nav_title/NavTitle";
+import { capitalizeFirstLetterInEveryWord } from "../../utils/capitalize/capitalise";
+
 function getTotal(arr: string[], value: string) {
   return arr.filter((item) => item === value).length;
 }
@@ -89,11 +91,11 @@ function TitleNavigation({ cards, year }: INavigation) {
               {find.items.map((v, i) => (
                 <li
                   key={i}
-                  className={`border py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} shadow-md`}
+                  className={`border py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} hover:scale-105 transition-transform shadow-md`}
                 >
                   <a href={`/nazwa?rok=${year}&nazwa=${v.title}`}>
                     <div className='flex gap-x-2'>
-                      <div>{v.title}</div>
+                      <div>{capitalizeFirstLetterInEveryWord(v.title)}</div>
                       <div className='underline'>{v.total}</div>
                     </div>
                   </a>
