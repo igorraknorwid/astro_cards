@@ -72,7 +72,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
               </div>
             </a>
             {c.subthemes && (
-              <ul className='flex flex-col items-start'>
+              <ul className='flex flex-col items-end'>
                 {c.subthemes.map((subtheme, i) => (
                   <li key={i}>
                     <a
