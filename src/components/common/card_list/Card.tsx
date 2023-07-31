@@ -67,7 +67,7 @@ function Card({ card }: ICardComponent) {
             className='px-4 py-2 rounded-lg bg-blue-700 uppercase hover:scale-y-110 hover:font-bold transition-transform'
             onClick={expandClickHandler}
           >
-            Powienksz zdjncie
+            Powienksz zdjencie
           </button>
         </div>
       </div>

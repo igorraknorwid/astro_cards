@@ -1,5 +1,8 @@
 import React from "react";
 import { ICard } from "../../types/card";
+import { capitalizeFirstLetterInEveryWord } from "../../utils/capitalize/capitalise";
+import { BAGROUNDS, FONTCOLOR } from "../../utils/constants/colors";
+import NavTitle from "../common/nav_title/NavTitle";
 
 function getTotal(arr: string[], value: string) {
   return arr.filter((item) => item === value).length;
@@ -63,25 +66,32 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
   };
 
   return (
-    <ul className='flex gap-x-4 border border-green-500'>
-      {navItems?.map((ni, i) => (
-        <li key={i}>
-          <div className='flex gap-x-2'>
-            <div
-              className={`${
-                ni.isActive ? "font-bold" : "font-light"
-              } cursor-pointer`}
-              onClick={() => clickHandler(ni)}
-            >
-              {ni.title}
-            </div>
-            <div>
-              {ni.total ? <div className='underline'>{ni.total}</div> : null}
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+    <section className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
+      <NavTitle title='Kartki według nazwisk autorów czy nazw dzieł' />
+      <div className={` ${BAGROUNDS.PASSIVE}  py-2 px-3 rounded-lg`}>
+        <ul className='flex items-start flex-col gap-4 text-lg '>
+          {navItems?.map((ni, i) => (
+            <li key={i}>
+              <div
+                className={`flex  gap-2 px-4 py-2 rounded-lg shadow-md cursor-pointer  ${
+                  ni.isActive
+                    ? `${BAGROUNDS.ACTIVE} ${FONTCOLOR.ACTIVE}`
+                    : `border hover:scale-105 hover:border-blue-600 transition-transform`
+                }`}
+                onClick={() => clickHandler(ni)}
+              >
+                <div>{capitalizeFirstLetterInEveryWord(ni.title)}</div>
+                <div>
+                  {ni.total ? (
+                    <div className='underline'>{ni.total}</div>
+                  ) : null}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }
 
