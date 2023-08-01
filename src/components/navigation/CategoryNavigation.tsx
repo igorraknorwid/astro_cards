@@ -61,7 +61,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
         {items.map((c, i) => (
           <li
             key={i}
-            className={` border basis-auto py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} hover:scale-105 transition-transform shadow-md`}
+            className={` border basis-auto py-2 px-4 rounded-lg hover:border-blue-700 hover:scale-105 transition-transform shadow-md`}
           >
             <a href={`/temat?rok=${year}&temat=${c.title}`}>
               <div className='flex gap-x-2 text-lg'>

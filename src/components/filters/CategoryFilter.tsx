@@ -1,5 +1,9 @@
 import React from "react";
 import { ICard } from "../../types/card";
+import { BAGROUNDS, FONTCOLOR } from "../../utils/constants/colors";
+import { capitalizeFirstLetterInEveryWord } from "../../utils/capitalize/capitalise";
+import NavTitle from "../common/nav_title/NavTitle";
+import Filter from "./Filter";
 
 function getTotal(arr: string[], value: string) {
   return arr.filter((item) => item === value).length;
@@ -62,26 +66,10 @@ function CategoryFilter({ cards, dataHandler }: IFilter) {
     }
   };
 
-  return (
-    <ul className='flex gap-x-4 border border-green-500'>
-      {navItems?.map((ni, i) => (
-        <li key={i}>
-          <div className='flex gap-x-2'>
-            <div
-              className={`${
-                ni.isActive ? "font-bold" : "font-light"
-              } cursor-pointer`}
-              onClick={() => clickHandler(ni)}
-            >
-              {ni.title}
-            </div>
-            <div>
-              {ni.total ? <div className='underline'>{ni.total}</div> : null}
-            </div>
-          </div>
-        </li>
-      ))}
-    </ul>
+
+
+  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="Kartki według nazwisk autorów czy nazw dzieł"/>
+ 
   );
 }
 
