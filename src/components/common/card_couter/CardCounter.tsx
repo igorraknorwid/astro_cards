@@ -15,7 +15,7 @@ function CardCounter({ cards }: ICardCounter) {
     <>
       {cards && (
         <div className='text-center text-lg my-2'>
-          Iłość kartek: {cards.length}
+          Iłość kart: {cards.length}
         </div>
       )}
     </>

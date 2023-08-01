@@ -68,7 +68,7 @@ function CategoryFilter({ cards, dataHandler }: IFilter) {
 
 
 
-  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="Kartki według nazwisk autorów czy nazw dzieł"/>
+  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="Temat"/>
  
   );
 }

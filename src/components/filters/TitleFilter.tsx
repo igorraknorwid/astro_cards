@@ -1,8 +1,5 @@
 import React from "react";
 import { ICard } from "../../types/card";
-import { capitalizeFirstLetterInEveryWord } from "../../utils/capitalize/capitalise";
-import { BAGROUNDS, FONTCOLOR } from "../../utils/constants/colors";
-import NavTitle from "../common/nav_title/NavTitle";
 import { IFilterItem } from "../../types/filters";
 import Filter from "./Filter";
 
@@ -63,7 +60,7 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
     }
   };
 
-  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="temat"/> 
+  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="Kartki według nazwisk autorów czy nazw dzieł"/> 
   );
 }
 
