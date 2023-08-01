@@ -45,7 +45,7 @@ function Card({ card }: ICardComponent) {
         onClick={expandClickHandler}
         src={card.image_slug}
         alt={card.title}
-        width={700}
+        width={800}
       />
       <div className='flex justify-between'>
         <div className='flex flex-col gap-y-2 text-sm py-4'>
