@@ -68,7 +68,7 @@ function CategoryFilter({ cards, dataHandler }: IFilter) {
 
 
 
-  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="Temat"/>
+  return (<Filter filterItems={navItems} clickHandler={clickHandler} title="Tematy"/>
  
   );
 }
