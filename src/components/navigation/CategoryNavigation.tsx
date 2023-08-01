@@ -56,7 +56,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
 
   return (
     <div className='bg-blue-200 py-2 px-4 rounded-lg'>
-      <NavTitle title='Kartki według tematów' />
+      <NavTitle title='Karty według tematów' />
       <ul className='my-2  bg-white py-2 px-4 rounded-lg flex flex-col items-start gap-4 border text-sm font-mono'>
         {items.map((c, i) => (
           <li

@@ -60,7 +60,7 @@ function TitleNavigation({ cards, year }: INavigation) {
   return (
     <section>
       <div className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
-        <NavTitle title='Kartki według nazwisk autorów czy nazw dzieł' />
+        <NavTitle title='Karty według nazwisk autorów czy nazw dzieł' />
         <ul
           className={`grid grid-cols-6 gap-4 py-2 px-3 rounded-lg ${BAGROUNDS.PASSIVE}`}
         >
