@@ -49,21 +49,21 @@ function Card({ card }: ICardComponent) {
     };
   }, [card.image_slug]);
   return (
-    <div
-      key={card._id}
-      className='p-4 bg-gray-300  border rounded-lg flex flex-col justify-center items-center'
-    >
-      {!isImage ? (
-        <Spinner />
-      ) : (
-        <img
-          className='cursor-pointer'
-          onClick={expandClickHandler}
-          src={card.image_slug}
-          alt={card.title}
-          width={800}
-        />
-      )}
+    <div key={card._id} className='p-4 bg-gray-300  border rounded-lg '>
+      <div className='flex flex-col justify-center items-center'>
+        {!isImage ? (
+          <Spinner />
+        ) : (
+          <img
+            className='cursor-pointer'
+            onClick={expandClickHandler}
+            src={card.image_slug}
+            alt={card.title}
+            width={800}
+          />
+        )}
+        s
+      </div>
       <div className='flex justify-between basis-full'>
         <div className='flex flex-col gap-y-2 text-sm py-4'>
           <div className=' py-1 px-2 rounded-lg'>
