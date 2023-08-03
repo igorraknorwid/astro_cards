@@ -62,7 +62,6 @@ function Card({ card }: ICardComponent) {
             width={800}
           />
         )}
-        s
       </div>
       <div className='flex justify-between basis-full'>
         <div className='flex flex-col gap-y-2 text-sm py-4'>
