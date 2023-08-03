@@ -49,7 +49,10 @@ function Card({ card }: ICardComponent) {
     };
   }, [card.image_slug]);
   return (
-    <div key={card._id} className='p-4 bg-gray-300  border rounded-lg'>
+    <div
+      key={card._id}
+      className='p-4 bg-gray-300  border rounded-lg flex flex-col justify-center items-center'
+    >
       {!isImage ? (
         <Spinner />
       ) : (
@@ -61,7 +64,7 @@ function Card({ card }: ICardComponent) {
           width={800}
         />
       )}
-      <div className='flex justify-between'>
+      <div className='flex justify-between basis-full'>
         <div className='flex flex-col gap-y-2 text-sm py-4'>
           <div className=' py-1 px-2 rounded-lg'>
             <span>Nazwa: </span>
