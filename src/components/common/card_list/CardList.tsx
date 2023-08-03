@@ -20,11 +20,15 @@ function CardList({
     const arr = [...cards].map((item, i) => ({ ...item, num: i + 1 }));
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return arr.slice(startIndex, endIndex);
+    return arr
+      .sort((a, b) => a.theme.title.localeCompare(b.theme.title))
+      .slice(startIndex, endIndex);
+    //
   };
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+  console.log("paginatedCards", paginatedCards(cards));
   return (
     <section>
       <Pagination

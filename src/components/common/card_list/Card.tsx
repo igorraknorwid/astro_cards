@@ -7,6 +7,7 @@ import {
   MODAL_IMG,
 } from "../../../utils/constants/modal_classes";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
+import expand from "../../../utils/images/expand.png";
 
 interface ICardComponent {
   card: ICard;
@@ -80,10 +81,10 @@ function Card({ card }: ICardComponent) {
         </div>
         <div className='flex items-center text-white '>
           <button
-            className='px-4 py-2 rounded-lg bg-blue-700 uppercase hover:scale-y-110 hover:font-bold transition-transform'
+            className='px-4 py-2 rounded-lg  uppercase hover:scale-y-110 hover:font-bold transition-transform text-sm'
             onClick={expandClickHandler}
           >
-            Powienksz zdjencie
+            <img src={expand} width={32} height={32} alt='powienksz zdjęcie' />
           </button>
         </div>
       </div>
