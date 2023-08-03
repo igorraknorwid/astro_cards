@@ -44,7 +44,7 @@ function CardList({
             key={item._id}
             className='flex gap-x-2 items-center justify-center'
           >
-            <div className='text-xl'>{item.num}.</div>
+            <div className='text-sm md:text-xl'>{item.num}.</div>
             <Card card={item} />
           </li>
         ))}
