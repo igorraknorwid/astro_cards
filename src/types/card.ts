@@ -9,6 +9,8 @@ export interface ICard {
   image_slug: string;
   theme: ITheme;
   subtheme?: ITheme;
+  slug: string;
+  warning: string;
 }
 
 export interface INavigation {

@@ -17,12 +17,16 @@ function CardList({
   setCurrentPage,
 }: ICardList) {
   const paginatedCards = (cards: ICard[]) => {
-    const arr = [...cards].map((item, i) => ({ ...item, num: i + 1 }));
+    const arr = [...cards]
+      .sort((a, b) => a.theme.title.localeCompare(b.theme.title))
+      .map((item, i) => ({ ...item, num: i + 1 }));
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return arr
-      .sort((a, b) => a.theme.title.localeCompare(b.theme.title))
-      .slice(startIndex, endIndex);
+    return (
+      arr
+        //
+        .slice(startIndex, endIndex)
+    );
     //
   };
   const handlePageChange = (pageNumber: number) => {

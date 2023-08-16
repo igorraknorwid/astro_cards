@@ -72,12 +72,20 @@ function Card({ card }: ICardComponent) {
               {capitalizeFirstLetterInEveryWord(card.title)}
             </span>
           </div>
-          <div className=' py-1 px-2 rounded-lg'>
+          <div className='py-1 px-2 rounded-lg'>
             <span>Temat: </span>
             <span className='font-bold'>
               {capitalizeFirstLetterInEveryWord(card.theme.title)}
             </span>
           </div>
+          {card.slug && (
+            <div className=' py-1 px-2 rounded-lg'>
+              <span>Nazwa: </span>
+              <span className='font-bold'>
+                <a href={card.slug}>Zródło</a>
+              </span>
+            </div>
+          )}
         </div>
         <div className='flex items-center text-white '>
           <button
