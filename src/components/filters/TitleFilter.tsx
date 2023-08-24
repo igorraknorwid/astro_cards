@@ -1,7 +1,5 @@
 import React from "react";
 import { ICard } from "../../types/card";
-import { IFilterItem } from "../../types/filters";
-import Filter from "./Filter";
 import { ITitleItem } from "../../types/title";
 import { segregateArrayByTitle } from "../../utils/segregation";
 import { BAGROUNDS, FONTCOLOR } from "../../utils/constants/colors";
@@ -112,11 +110,39 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
 
   const find = data?.find((item) => item.isActive === true);
 
-  const itemClickHandler = (item: ITitleItem) => {
-    if (item.isActive) {
+  const itemClickHandler = (value: ITitleItem) => {
+    if (value.isActive) {
+      const mapedData = [...data].map((item) => {
+        const changedItem = {
+          ...item,
+          items: [...item.items].map((x) => {
+            if (x.title === value.title) {
+              return { ...x, isActive: false };
+            } else {
+              return { ...x };
+            }
+          }),
+        };
+        return changedItem;
+      });
+      setData(mapedData);
       dataHandler(null);
     } else {
-      dataHandler(item.title);
+      const mapedData = [...data].map((item) => {
+        const changedItem = {
+          ...item,
+          items: [...item.items].map((x) => {
+            if (x.title === value.title) {
+              return { ...x, isActive: true };
+            } else {
+              return { ...x };
+            }
+          }),
+        };
+        return changedItem;
+      });
+      setData(mapedData);
+      dataHandler(value.title);
     }
   };
 
@@ -163,7 +189,13 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
                     itemClickHandler(v);
                   }}
                   key={i}
-                  className={`cursor-pointer border py-2 px-4 rounded-lg hover:${BAGROUNDS.ACTIVE_BORDER} hover:scale-105 transition-transform shadow-md`}
+                  className={`cursor-pointer border py-2 px-4 rounded-lg hover:${
+                    BAGROUNDS.ACTIVE_BORDER
+                  } hover:scale-105 transition-transform shadow-md ${
+                    v.isActive
+                      ? `${BAGROUNDS.ACTIVE} ${FONTCOLOR.ACTIVE}`
+                      : `border hover:scale-105 hover:border-blue-600 transition-transform`
+                  }`}
                 >
                   <div className='flex gap-x-2'>
                     <div>{capitalizeFirstLetterInEveryWord(v.title)}</div>
