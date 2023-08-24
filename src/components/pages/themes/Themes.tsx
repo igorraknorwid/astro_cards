@@ -1,6 +1,7 @@
 import React from "react";
 import client from "../../../api/sanityClient";
 import Spinner from "../../common/spinner/Spinner";
+import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
 
 interface ITheme {
   _id: string;
@@ -39,10 +40,15 @@ function Themes() {
   return (
     <div className='py-5 mx-2 md:mx-[5%] flex flex-col items-center md:items-start gap-y-4'>
       {/* <p className='font-bold text-xl uppercase'>Dostępne roczniki:</p> */}
-      <ul className='flex flex-col gap-y-3 text-lg font-thin items-center md:items-start '>
+      <ul className='flex flex-col md:flex-row flex-wrap gap-3 md:gap-10 text-lg font-thin items-center md:items-start '>
         {sortedData?.map((item) => (
-          <li className='hover:underline' key={item._id}>
-            <a href={`/calosc?temat=${item.title}`}>{item.title}</a>
+          <li className='hover:underline ' key={item._id}>
+            <a
+              className='border py-1 px-2'
+              href={`/calosc?temat=${item.title}`}
+            >
+              {capitalizeFirstLetterInEveryWord(item.title)}
+            </a>
           </li>
         ))}
       </ul>
