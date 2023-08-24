@@ -12,7 +12,7 @@ function getTotal(arr: string[], value: string) {
 
 interface ITitleFilter {
   cards: ICard[];
-  dataHandler: (value: string | null) => void;
+  dataHandler: (title: string | null, year: string | null) => void;
 }
 
 function TitleFilter({ cards, dataHandler }: ITitleFilter) {
@@ -83,7 +83,7 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
         return changedItem;
       });
       setData(mapedData);
-      dataHandler(null);
+      dataHandler(null, null);
     } else {
       const mapedData = [...data].map((item) => {
         const changedItem = {
@@ -99,7 +99,7 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
         return changedItem;
       });
       setData(mapedData);
-      dataHandler(value.title);
+      dataHandler(value.title, null);
     }
   };
 

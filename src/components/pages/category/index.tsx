@@ -7,9 +7,18 @@ import CardList from "../../common/card_list/CardList";
 import TitleFilter from "../../filters/TitleFilter";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
 
+interface IFilter {
+  title: string | null;
+  year: string | null;
+}
+
 function AllFromCategory() {
   const [data, setData] = React.useState<ICard[] | null>(null);
-  const [filter, setFilter] = React.useState<string | null>(null);
+  const [filter, setFilter] = React.useState<IFilter>({
+    title: null,
+    year: null,
+  });
+
   const [isError, setIsError] = React.useState<boolean>(false);
   const [category, setCategory] = React.useState<string | null>(null);
   const [subCategory, setSubCategory] = React.useState<string | null>(null);
@@ -19,8 +28,8 @@ function AllFromCategory() {
     setCurrentPage(value);
   };
 
-  const setDataFilter = (value: string | null) => {
-    setFilter(value);
+  const setDataFilter = (title: string | null, year: string | null) => {
+    setFilter({ ...filter, title, year });
     setCurrentPage(1);
   };
 
@@ -49,13 +58,21 @@ function AllFromCategory() {
     fetchData();
   }, []);
 
-  const filteredData = data?.filter((item) => {
-    if (filter === null) {
-      return true;
-    } else {
-      return item.title === filter;
-    }
-  });
+  const filteredData = data
+    ?.filter((item) => {
+      if (filter.title === null) {
+        return true;
+      } else {
+        return item.title === filter.title;
+      }
+    })
+    .filter((item) => {
+      if (filter.year === null) {
+        return true;
+      } else {
+        return item.title === filter.year;
+      }
+    });
 
   if (!data)
     return (
