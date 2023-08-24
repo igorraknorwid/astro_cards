@@ -27,6 +27,7 @@ function TitleNavigation({ cards, year }: INavigation) {
       return {
         title: item,
         total: arrByTitle ? getTotal(arrByTitle, item) : 0,
+        isActive: false,
       };
     });
     const alfabet = segregateArrayByTitle(items);
