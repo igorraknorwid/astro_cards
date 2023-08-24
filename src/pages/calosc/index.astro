@@ -1,10 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import CardsByCategory from "../../components/pages/category_page_by_year/index";
+import AllFromCategory from "../../components/pages/category/index";
 ---
 
 <Layout title='Kartki bibliograficzne'>
   <main>
-    <CardsByCategory client:load />
+    <AllFromCategory client:load />
   </main>
 </Layout>
