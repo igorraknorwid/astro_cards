@@ -31,6 +31,10 @@ function CardList({
   };
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   console.log("paginatedCards", paginatedCards(cards));
   return (
