@@ -39,61 +39,18 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
     setData(alfabet);
   }, [cards]);
 
-  // const [navItems, setNavItems] = React.useState<IFilterItem[] | null>(null);
-
-  // React.useEffect(() => {
-  //   const arrByTitle = cards.map((item) => item.title);
-  //   const dublicateRemoving = Array.from(new Set(arrByTitle));
-
-  //   const items: IFilterItem[] = dublicateRemoving?.map((item) => {
-  //     return {
-  //       isActive: false,
-  //       title: item,
-  //       total: arrByTitle ? getTotal(arrByTitle, item) : 0,
-  //     };
-  //   });
-
-  //   setNavItems(items);
-  // }, [cards]);
-
-  // const clickHandler = (ni: IFilterItem) => {
-  //   if (ni.isActive) {
-  //     //click on active filter item
-  //     const arr = navItems?.map((item) => {
-  //       return { ...item, isActive: false };
-  //     });
-  //     if (arr) {
-  //       //render
-  //       setNavItems([...arr]);
-  //     }
-  //     //swich off filter on parent component
-  //     dataHandler(null);
-  //   } else {
-  //     //click on not active filter item
-  //     const arr = navItems?.map((item) => {
-  //       if (ni.title === item.title) {
-  //         return { ...item, isActive: true };
-  //       } else {
-  //         return { ...item, isActive: false };
-  //       }
-  //     });
-  //     if (arr) {
-  //       //render
-  //       setNavItems([...arr]);
-  //     }
-  //     dataHandler(ni.title);
-  //     //swich on filter on parent component
-  //   }
-  // };
-
   const letterClickHandler = (value: {
     letter: string;
     items: ITitleItem[];
     isActive: boolean;
   }) => {
     if (value.isActive) {
-      const mapedData = [...data].map((item) => {
-        return { ...item, isActive: false };
+      const mapedData = [...data].map((item, i) => {
+        if (i === 0) {
+          return { ...item, isActive: true };
+        } else {
+          return { ...item, isActive: false };
+        }
       });
       setData(mapedData);
     } else {
@@ -119,7 +76,7 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
             if (x.title === value.title) {
               return { ...x, isActive: false };
             } else {
-              return { ...x };
+              return { ...x, isActive: false };
             }
           }),
         };
@@ -135,7 +92,7 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
             if (x.title === value.title) {
               return { ...x, isActive: true };
             } else {
-              return { ...x };
+              return { ...x, isActive: false };
             }
           }),
         };
