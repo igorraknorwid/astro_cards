@@ -17,11 +17,11 @@ interface IItem {
   total: number;
 }
 
-function CategoryFilter({ cards, dataHandler }: IFilter) {
+function YearFilter({ cards, dataHandler }: IFilter) {
   const [navItems, setNavItems] = React.useState<IItem[] | null>(null);
 
   React.useEffect(() => {
-    const arrByTitle = cards.map((item) => item.theme.title);
+    const arrByTitle = cards.map((item) => item);
     const dublicateRemoving = Array.from(new Set(arrByTitle));
     const items: IItem[] = dublicateRemoving?.map((item) => {
       return {
@@ -68,4 +68,4 @@ function CategoryFilter({ cards, dataHandler }: IFilter) {
   );
 }
 
-export default CategoryFilter;
+export default YearFilter;
