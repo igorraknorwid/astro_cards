@@ -42,7 +42,7 @@ function AllFromCategory() {
         // const subcategory = queryParams.get("subtemat");
         // setSubCategory(subcategory);
         // console.log(subcategory);
-        const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,theme->{title},
+        const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},
       }`;
         // const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id, title,image_slug,theme->{title}}`;
         const result = await client.fetch<ICard[]>(

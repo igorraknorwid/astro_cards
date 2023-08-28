@@ -49,6 +49,7 @@ function Card({ card }: ICardComponent) {
       setIsImage(true);
     };
   }, [card.image_slug]);
+  const years = card.years.map((obj) => obj.title);
   return (
     <div key={card._id} className='p-4 bg-gray-300  border rounded-lg '>
       <div className='flex flex-col justify-center items-center'>
@@ -65,8 +66,8 @@ function Card({ card }: ICardComponent) {
         )}
       </div>
       <div className='flex justify-between basis-full'>
-        <div className='flex flex-col gap-y-2 text-sm py-4'>
-          <div className=' py-1 px-2 rounded-lg'>
+        <div className='flex flex-col gap-y-1 text-sm py-2'>
+          <div className='py-1 px-2 rounded-lg'>
             <span>Nazwa: </span>
             <span className='font-bold'>
               {capitalizeFirstLetterInEveryWord(card.title)}
@@ -77,6 +78,16 @@ function Card({ card }: ICardComponent) {
             <span className='font-bold'>
               {capitalizeFirstLetterInEveryWord(card.theme.title)}
             </span>
+          </div>
+          <div className='py-1 px-2 rounded-lg flex gap-x-1'>
+            <p>{years.length > 1 ? "Lata:" : "Rok:"}</p>
+            <p className='font-bold'>
+              <ul className='flex gap-x-1'>
+                {years.map((y) => (
+                  <li key={y}>{y}</li>
+                ))}
+              </ul>
+            </p>
           </div>
           {card.slug && (
             <div className=' py-1 px-2 rounded-lg'>

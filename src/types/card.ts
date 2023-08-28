@@ -3,6 +3,10 @@ interface ITheme {
   _id: string;
 }
 
+interface IYear {
+  title: string;
+}
+
 export interface ICard {
   _id: string;
   title: string;
@@ -11,6 +15,7 @@ export interface ICard {
   subtheme?: ITheme;
   slug: string;
   warning: string;
+  years: IYear[];
 }
 
 export interface INavigation {
