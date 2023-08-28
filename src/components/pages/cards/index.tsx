@@ -28,7 +28,7 @@ function Cards() {
         slug,warning
       }`;
         const result = await client.fetch<ICard[]>(query);
-        console.log(result);
+
         setData(result);
       } catch (error) {
         setIsError(true);
