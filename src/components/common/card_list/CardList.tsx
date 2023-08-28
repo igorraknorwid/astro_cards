@@ -36,7 +36,7 @@ function CardList({
       behavior: "smooth",
     });
   };
-  console.log("paginatedCards", paginatedCards(cards));
+
   return (
     <section>
       <Pagination
