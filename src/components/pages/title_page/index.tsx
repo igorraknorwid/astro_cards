@@ -39,9 +39,10 @@ function CardsByTitle() {
         setYear(year);
         const title = queryParams.get("nazwa");
         setTitle(title);
-        const query = `*[_type == 'card' && '${year}' in years[]->title && title == '${title}']{ _id, title,image_slug,theme->{title},
+        const query = `*[_type == 'card' && '${year}' in years[]->title && title == '${title}']{ _id, title,years[]->{title},image_slug,theme->{title},
       }`;
         const result = await client.fetch<ICard[]>(query);
+        console.log(result);
         setData(result);
       } catch (error) {
         setIsError(true);
@@ -63,6 +64,8 @@ function CardsByTitle() {
         Error fetching data from Sanity!
       </div>
     );
+
+  console.log("data", data);
   return (
     <div className='m-10'>
       <YearTitle year={year} />
@@ -72,12 +75,12 @@ function CardsByTitle() {
           {capitalizeFirstLetterInEveryWord(title)}
         </span>
       </p>
-      <CardCounter cards={filteredData} />
+      <CardCounter cards={data} />
       <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
         <div className='basis-2/3 border rounded-lg'>
-          {filteredData && (
+          {data && (
             <CardList
-              cards={filteredData}
+              cards={data}
               itemsPerPage={5}
               currentPage={currentPage}
               setCurrentPage={currentPageHandler}

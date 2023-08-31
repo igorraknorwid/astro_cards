@@ -81,13 +81,13 @@ function Card({ card }: ICardComponent) {
           </div>
           <div className='py-1 px-2 rounded-lg flex gap-x-1'>
             <p>{years.length > 1 ? "Lata:" : "Rok:"}</p>
-            <p className='font-bold'>
+            <div className='font-bold'>
               <ul className='flex gap-x-1'>
                 {years.map((y) => (
                   <li key={y}>{y}</li>
                 ))}
               </ul>
-            </p>
+            </div>
           </div>
           {card.slug && (
             <div className=' py-1 px-2 rounded-lg'>
