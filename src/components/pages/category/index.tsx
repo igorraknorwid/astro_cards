@@ -72,7 +72,8 @@ function AllFromCategory() {
       } else {
         return item.title === filter.year;
       }
-    });
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   if (!data)
     return (
