@@ -27,9 +27,7 @@ function Years() {
 
     fetchData();
   }, []);
-  const sortedData = data?.sort(
-    (a, b) => parseInt(a.title) - parseInt(b.title)
-  );
+  const sortedData = data?.sort((a, b) => a.title.localeCompare(b.title));
 
   if (!data)
     return (
