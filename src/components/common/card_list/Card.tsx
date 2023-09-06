@@ -51,7 +51,10 @@ function Card({ card }: ICardComponent) {
   }, [card.image_slug]);
   const years = card.years.map((obj) => obj.title);
   return (
-    <div key={card._id} className='p-4 bg-gray-300  border rounded-lg '>
+    <div
+      key={card._id}
+      className='p-4 bg-white hover:bg-slate-300 transition-transform   border rounded-lg '
+    >
       <div className='flex flex-col justify-center items-center'>
         {!isImage ? (
           <Spinner />
