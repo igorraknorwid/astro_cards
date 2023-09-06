@@ -79,7 +79,9 @@ function CategoryNavigation({ cards, year }: INavigation) {
                       href={`/temat?rok=${year}&temat=${c.title}&subtemat=${subtheme.title}`}
                     >
                       <div className='flex gap-x-2 text-sm'>
-                        <div> {subtheme.title}</div>
+                        <div>
+                          {capitalizeFirstLetterInEveryWord(subtheme.title)}
+                        </div>
                         <div className='underline'> {subtheme.total}</div>
                       </div>
                     </a>
