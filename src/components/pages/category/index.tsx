@@ -1,5 +1,5 @@
 import React from "react";
-import { ICard } from "../../../types/card";
+import { ICard, ICardData } from "../../../types/card";
 import client from "../../../api/sanityClient";
 import Spinner from "../../common/spinner/Spinner";
 import CardCounter from "../../common/card_couter/CardCounter";
@@ -23,6 +23,7 @@ function AllFromCategory() {
   const [category, setCategory] = React.useState<string | null>(null);
   const [subCategory, setSubCategory] = React.useState<string | null>(null);
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [years, setYears] = React.useState<string[] | null>(null);
 
   const currentPageHandler = (value: number) => {
     setCurrentPage(value);
@@ -45,11 +46,33 @@ function AllFromCategory() {
         const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},
       }`;
         // const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id, title,image_slug,theme->{title}}`;
-        const result = await client.fetch<ICard[]>(
+        const result = await client.fetch<ICardData[]>(
           // subcategory ? queryWithSubcategory : query
           query
         );
-        setData(result);
+        if (result) {
+          const yearsArr = result
+            .map((item) => item.years.map((item) => item.title))
+            .reduce((acc, item) => {
+              item.forEach((value) => acc.push(value));
+              return acc;
+            });
+          const yearsSet = Array.from(new Set(yearsArr));
+          if (yearsSet.length > 0) {
+            setYears(yearsSet);
+          }
+        }
+
+        setData(
+          result.map((item) => {
+            return {
+              ...item,
+              years: item.years
+                .map((item) => item.title)
+                .sort((a, b) => a.localeCompare(b)),
+            };
+          })
+        );
       } catch (error) {
         setIsError(true);
         console.error("Error fetching data from Sanity:", error);
@@ -70,11 +93,13 @@ function AllFromCategory() {
       if (filter.year === null) {
         return true;
       } else {
-        return item.title === filter.year;
+        return item.years.includes(filter.year);
       }
     })
-    .sort((a, b) => a.title.localeCompare(b.title));
 
+    .sort((a, b) => a.title.localeCompare(b.title));
+  console.log(data);
+  console.log(years);
   if (!data)
     return (
       <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
@@ -118,6 +143,43 @@ function AllFromCategory() {
         </div>
         <div className='basis-1/3 flex flex-col gap-4'>
           <TitleFilter cards={data} dataHandler={setDataFilter} />
+
+          {years ? (
+            <ul className='flex flex-col gap-y-2 text-xl border '>
+              <li>
+                <button
+                  className={`${
+                    filter.year === null ? "text-red-800" : "text-blue-500"
+                  }`}
+                >
+                  Całość
+                </button>
+              </li>
+              {years.map((year, i) => (
+                <li key={i}>
+                  <button
+                    className={`${
+                      year === filter.year ? "text-red-800" : "text-blue-500"
+                    }`}
+                    onClick={() => {
+                      if (filter.year === year) {
+                        setFilter((filter) => {
+                          return { ...filter, year: null };
+                        });
+                      } else {
+                        setFilter((filter) => {
+                          return { ...filter, year };
+                        });
+                      }
+                      console.log(year);
+                    }}
+                  >
+                    {year}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </div>
     </div>

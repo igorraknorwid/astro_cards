@@ -49,7 +49,7 @@ function Card({ card }: ICardComponent) {
       setIsImage(true);
     };
   }, [card.image_slug]);
-  const years = card.years.map((obj) => obj.title);
+  const years = card.years.map((obj) => obj);
   return (
     <div
       key={card._id}

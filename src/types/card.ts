@@ -15,6 +15,17 @@ export interface ICard {
   subtheme?: ITheme;
   slug: string;
   warning: string;
+  years: string[];
+}
+
+export interface ICardData {
+  _id: string;
+  title: string;
+  image_slug: string;
+  theme: ITheme;
+  subtheme?: ITheme;
+  slug: string;
+  warning: string;
   years: IYear[];
 }
 
