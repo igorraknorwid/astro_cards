@@ -42,7 +42,6 @@ function AllFromCategory() {
         setCategory(category);
         // const subcategory = queryParams.get("subtemat");
         // setSubCategory(subcategory);
-        // console.log(subcategory);
         const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},
       }`;
         // const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id, title,image_slug,theme->{title}}`;
@@ -98,8 +97,7 @@ function AllFromCategory() {
     })
 
     .sort((a, b) => a.title.localeCompare(b.title));
-  console.log(data);
-  console.log(years);
+
   if (!data)
     return (
       <div className='mx-2 md:mx-[10%] flex justify-center items-center mt-[10%]'>
@@ -176,7 +174,6 @@ function AllFromCategory() {
                           return { ...filter, year };
                         });
                       }
-                      console.log(year);
                     }}
                   >
                     {year}
