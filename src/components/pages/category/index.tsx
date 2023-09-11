@@ -83,7 +83,6 @@ function AllFromCategory() {
     .sort((a, b) => a.title.localeCompare(b.title));
 
   React.useEffect(() => {
-    console.log("DATA", data);
     if (data) {
       const yearsArr = data
         ?.filter((item) => {
