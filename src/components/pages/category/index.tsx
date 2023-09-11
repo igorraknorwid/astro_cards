@@ -148,6 +148,11 @@ function AllFromCategory() {
             <ul className='flex flex-col gap-y-2 text-xl border '>
               <li>
                 <button
+                  onClick={() => {
+                    setFilter((filter) => {
+                      return { ...filter, year: null };
+                    });
+                  }}
                   className={`${
                     filter.year === null ? "text-red-800" : "text-blue-500"
                   }`}
