@@ -46,18 +46,6 @@ function AllFromCategory() {
       }`;
 
         const result = await client.fetch<ICardData[]>(query);
-        // if (result) {
-        //   const yearsArr = result
-        //     .map((item) => item.years.map((item) => item.title))
-        //     .reduce((acc, item) => {
-        //       item.forEach((value) => acc.push(value));
-        //       return acc;
-        //     });
-        //   const yearsSet = Array.from(new Set(yearsArr));
-        //   if (yearsSet.length > 0) {
-        //     setYears(yearsSet);
-        //   }
-        // }
 
         setData(
           result.map((item) => {
