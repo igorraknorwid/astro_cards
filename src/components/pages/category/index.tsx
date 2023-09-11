@@ -46,18 +46,18 @@ function AllFromCategory() {
       }`;
 
         const result = await client.fetch<ICardData[]>(query);
-        if (result) {
-          const yearsArr = result
-            .map((item) => item.years.map((item) => item.title))
-            .reduce((acc, item) => {
-              item.forEach((value) => acc.push(value));
-              return acc;
-            });
-          const yearsSet = Array.from(new Set(yearsArr));
-          if (yearsSet.length > 0) {
-            setYears(yearsSet);
-          }
-        }
+        // if (result) {
+        //   const yearsArr = result
+        //     .map((item) => item.years.map((item) => item.title))
+        //     .reduce((acc, item) => {
+        //       item.forEach((value) => acc.push(value));
+        //       return acc;
+        //     });
+        //   const yearsSet = Array.from(new Set(yearsArr));
+        //   if (yearsSet.length > 0) {
+        //     setYears(yearsSet);
+        //   }
+        // }
 
         setData(
           result.map((item) => {
@@ -92,8 +92,32 @@ function AllFromCategory() {
         return item.years.includes(filter.year);
       }
     })
-
     .sort((a, b) => a.title.localeCompare(b.title));
+
+  React.useEffect(() => {
+    console.log("DATA", data);
+    if (data) {
+      const yearsArr = data
+        ?.filter((item) => {
+          if (filter.title === null) {
+            return true;
+          } else {
+            return item.title === filter.title;
+          }
+        })
+        .map((item) => item.years.map((item) => item))
+        .reduce((acc, item) => {
+          item.forEach((value) => acc.push(value));
+          return acc;
+        });
+      const yearsSet = Array.from(new Set(yearsArr)).sort((a, b) =>
+        a.localeCompare(b)
+      );
+      if (yearsSet.length > 0) {
+        setYears(yearsSet);
+      }
+    }
+  }, [data, filter]);
 
   if (!data)
     return (
