@@ -42,7 +42,6 @@ function CardsByTitle() {
         const query = `*[_type == 'card' && '${year}' in years[]->title && title == '${title}']{ _id, title,years[]->{title},image_slug,theme->{title},
       }`;
         const result = await client.fetch<ICardData[]>(query);
-        console.log(result);
         setData(
           result.map((item) => {
             return {
@@ -74,7 +73,6 @@ function CardsByTitle() {
       </div>
     );
 
-  console.log("data", data);
   return (
     <div className='m-10'>
       <YearTitle year={year} />
@@ -84,12 +82,12 @@ function CardsByTitle() {
           {capitalizeFirstLetterInEveryWord(title)}
         </span>
       </p>
-      <CardCounter cards={data} />
+      <CardCounter cards={filteredData} />
       <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
         <div className='basis-2/3 border rounded-lg'>
           {data && (
             <CardList
-              cards={data}
+              cards={filteredData}
               itemsPerPage={5}
               currentPage={currentPage}
               setCurrentPage={currentPageHandler}
