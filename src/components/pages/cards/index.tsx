@@ -1,6 +1,6 @@
 import React from "react";
 import client from "../../../api/sanityClient";
-import { ICard } from "../../../types/card";
+import { ICard, ICardData } from "../../../types/card";
 import YearTitle from "../../common/year_title/YearTitle";
 import Spinner from "../../common/spinner/Spinner";
 import CardCounter from "../../common/card_couter/CardCounter";
@@ -27,9 +27,18 @@ function Cards() {
         const query = `*[_type == "card" && '${year}' in years[]->title]{ _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},
         slug,warning
       }`;
-        const result = await client.fetch<ICard[]>(query);
+        const result = await client.fetch<ICardData[]>(query);
 
-        setData(result);
+        setData(
+          result.map((item) => {
+            return {
+              ...item,
+              years: item.years
+                .map((item) => item.title)
+                .sort((a, b) => a.localeCompare(b)),
+            };
+          })
+        );
       } catch (error) {
         setIsError(true);
         console.error("Error fetching data from Sanity:", error);

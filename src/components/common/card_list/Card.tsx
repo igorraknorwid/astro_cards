@@ -86,8 +86,8 @@ function Card({ card }: ICardComponent) {
             <p>{years.length > 1 ? "Lata:" : "Rok:"}</p>
             <div className='font-bold'>
               <ul className='flex gap-x-1'>
-                {years.map((y) => (
-                  <li key={y}>{y}</li>
+                {years.map((y, i) => (
+                  <li key={i}>{y}</li>
                 ))}
               </ul>
             </div>

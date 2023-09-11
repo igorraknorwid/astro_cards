@@ -6,6 +6,7 @@ import CardCounter from "../../common/card_couter/CardCounter";
 import CardList from "../../common/card_list/CardList";
 import TitleFilter from "../../filters/TitleFilter";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
+import { BAGROUNDS, FONTCOLOR } from "../../../utils/constants/colors";
 
 interface IFilter {
   title: string | null;
@@ -40,15 +41,11 @@ function AllFromCategory() {
         const queryParams = new URLSearchParams(window.location.search);
         const category = queryParams.get("temat");
         setCategory(category);
-        // const subcategory = queryParams.get("subtemat");
-        // setSubCategory(subcategory);
+
         const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},
       }`;
-        // const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id, title,image_slug,theme->{title}}`;
-        const result = await client.fetch<ICardData[]>(
-          // subcategory ? queryWithSubcategory : query
-          query
-        );
+
+        const result = await client.fetch<ICardData[]>(query);
         if (result) {
           const yearsArr = result
             .map((item) => item.years.map((item) => item.title))
@@ -143,44 +140,52 @@ function AllFromCategory() {
           <TitleFilter cards={data} dataHandler={setDataFilter} />
 
           {years ? (
-            <ul className='flex flex-col gap-y-2 text-xl border '>
-              <li>
-                <button
-                  onClick={() => {
-                    setFilter((filter) => {
-                      return { ...filter, year: null };
-                    });
-                  }}
-                  className={`${
-                    filter.year === null ? "text-red-800" : "text-blue-500"
-                  }`}
-                >
-                  Całość
-                </button>
-              </li>
-              {years.map((year, i) => (
-                <li key={i}>
+            <div className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
+              <ul
+                className={`${BAGROUNDS.PASSIVE} flex flex-col gap-y-2 py-2 px-3`}
+              >
+                <li>
                   <button
-                    className={`${
-                      year === filter.year ? "text-red-800" : "text-blue-500"
-                    }`}
                     onClick={() => {
-                      if (filter.year === year) {
-                        setFilter((filter) => {
-                          return { ...filter, year: null };
-                        });
-                      } else {
-                        setFilter((filter) => {
-                          return { ...filter, year };
-                        });
-                      }
+                      setFilter((filter) => {
+                        return { ...filter, year: null };
+                      });
                     }}
+                    className={`px-4 py-2 rounded-lg shadow-md ${
+                      filter.year === null
+                        ? `${BAGROUNDS.ACTIVE} ${FONTCOLOR.ACTIVE}`
+                        : `border hover:scale-105 hover:${BAGROUNDS.ACTIVE_BORDER} transition-transform`
+                    }`}
                   >
-                    {year}
+                    Całość
                   </button>
                 </li>
-              ))}
-            </ul>
+                {years.map((year, i) => (
+                  <li key={i}>
+                    <button
+                      className={`px-4 py-2 rounded-lg shadow-md ${
+                        year === filter.year
+                          ? `${BAGROUNDS.ACTIVE} ${FONTCOLOR.ACTIVE}`
+                          : `border hover:scale-105 hover:${BAGROUNDS.ACTIVE_BORDER} transition-transform`
+                      }`}
+                      onClick={() => {
+                        if (filter.year === year) {
+                          setFilter((filter) => {
+                            return { ...filter, year: null };
+                          });
+                        } else {
+                          setFilter((filter) => {
+                            return { ...filter, year };
+                          });
+                        }
+                      }}
+                    >
+                      {year}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ) : null}
         </div>
       </div>
