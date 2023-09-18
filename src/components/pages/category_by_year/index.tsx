@@ -38,12 +38,13 @@ function CardsByCategory() {
         setSubCategory(subcategory);
         const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id,years[]->{title},title,image_slug,theme->{title},
       }`;
-        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id, title,image_slug,theme->{title}}`;
+        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id,years[]->{title},title,image_slug,theme->{title}}`;
         const result = await client.fetch<ICardData[]>(
           subcategory ? queryWithSubcategory : query
         );
+
         setData(
-          result.map((item) => {
+          result?.map((item) => {
             return {
               ...item,
               years: item.years

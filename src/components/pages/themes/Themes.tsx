@@ -16,9 +16,10 @@ function Themes() {
     const fetchData = async () => {
       try {
         const query = `*[_type == "theme"]{ _id,
-          title,
+          title,subtheme[]->{_id,title}, 
         }`;
         const result = await client.fetch<ITheme[]>(query);
+        console.log(result, "TEST result");
         setData(result);
       } catch (error) {
         setIsError(true);
@@ -28,6 +29,7 @@ function Themes() {
 
     fetchData();
   }, []);
+
   const sortedData = data?.sort((a, b) => a.title.localeCompare(b.title));
 
   if (!data)
