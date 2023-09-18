@@ -19,7 +19,6 @@ function Themes() {
           title,subtheme[]->{_id,title}, 
         }`;
         const result = await client.fetch<ITheme[]>(query);
-        console.log(result, "TEST result");
         setData(result);
       } catch (error) {
         setIsError(true);
