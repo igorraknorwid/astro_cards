@@ -13,7 +13,7 @@ interface IFilter {
   year: string | null;
 }
 
-function AllFromCategory() {
+function Category() {
   const [data, setData] = React.useState<ICard[] | null>(null);
   const [filter, setFilter] = React.useState<IFilter>({
     title: null,
@@ -204,4 +204,4 @@ function AllFromCategory() {
   );
 }
 
-export default AllFromCategory;
+export default Category;

@@ -29,7 +29,9 @@ function Themes() {
     fetchData();
   }, []);
 
-  const sortedData = data?.sort((a, b) => a.title.localeCompare(b.title));
+  const sortedData = data
+    ?.slice()
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   if (!data)
     return (
