@@ -36,9 +36,12 @@ function CardsByCategory() {
         setCategory(category);
         const subcategory = queryParams.get("subtemat");
         setSubCategory(subcategory);
-        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id,years[]->{title},title,image_slug,theme->{title},
-      }`;
+        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id,years[]->{title},title,image_slug,theme->{title},theme2[]->{title,_id}
+        }`;
+        //     const query = `*[_type == 'card' && '${year}' in years[]->title && '${category}' in theme2[]->title]{ _id,years[]->{title},title,image_slug,theme->{title},theme2[]->{title,_id}
+        // }`;
         const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id,years[]->{title},title,image_slug,theme->{title}}`;
+        // const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->'${category}' in theme2[]->title && subtheme->title == "${subcategory}" ]{ _id,years[]->{title},title,image_slug,theme->{title}}`;
 
         const result = await client.fetch<ICardData[]>(
           subcategory ? queryWithSubcategory : query

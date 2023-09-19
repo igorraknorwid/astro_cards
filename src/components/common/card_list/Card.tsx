@@ -49,7 +49,8 @@ function Card({ card }: ICardComponent) {
       setIsImage(true);
     };
   }, [card.image_slug]);
-  const years = card.years.map((obj) => obj);
+  const years = card.years?.slice().map((obj) => obj);
+  // const themes_list = card.theme2?.slice().map((obj) => obj.title);
   return (
     <div
       key={card._id}
@@ -92,6 +93,16 @@ function Card({ card }: ICardComponent) {
               </ul>
             </div>
           </div>
+          {/* <div className='py-1 px-2 rounded-lg flex gap-x-1'>
+            <p>{themes_list?.length > 1 ? "Tematy:" : "Temat:"}</p>
+            <div className='font-bold'>
+              <ul className='flex gap-x-1'>
+                {themes_list?.map((y, i) => (
+                  <li key={i}>{capitalizeFirstLetterInEveryWord(y)}</li>
+                ))}
+              </ul>
+            </div>
+          </div> */}
           {card.slug && (
             <div className=' py-1 px-2 rounded-lg'>
               <span>Nazwa: </span>

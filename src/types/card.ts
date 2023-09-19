@@ -3,6 +3,10 @@ interface ITheme {
   _id: string;
 }
 
+interface IThemes {
+  themes2: ITheme[];
+}
+
 interface IYear {
   title: string;
 }
@@ -12,6 +16,7 @@ export interface ICard {
   title: string;
   image_slug: string;
   theme: ITheme;
+  theme2?: ITheme[];
   subtheme?: ITheme;
   slug: string;
   warning: string;
@@ -23,6 +28,7 @@ export interface ICardData {
   title: string;
   image_slug: string;
   theme: ITheme;
+  themes: IThemes;
   subtheme?: ITheme;
   slug: string;
   warning: string;

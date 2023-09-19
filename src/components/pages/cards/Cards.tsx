@@ -24,10 +24,9 @@ function Cards() {
         const queryParams = new URLSearchParams(window.location.search);
         const year = queryParams.get("rok");
         setYear(year);
-        const query = `*[_type == "card" && '${year}' in years[]->title]{ _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},
-        slug,warning
-      }`;
+        const query = `*[_type == "card" && '${year}' in years[]->title]{ _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},theme2[]->{title,_id},slug,warning}`;
         const result = await client.fetch<ICardData[]>(query);
+        console.log(result, "TEST");
 
         setData(
           result.map((item) => {

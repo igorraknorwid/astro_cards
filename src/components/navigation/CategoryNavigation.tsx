@@ -37,6 +37,12 @@ function setSubthemes(cards: ICard[], value: string) {
 
 function CategoryNavigation({ cards, year }: INavigation) {
   const categoryArrByTheme = cards.map((item) => item.theme.title);
+  // let categoryArrByTheme: string[] = [];
+  // cards.forEach((card) =>
+  //   card.theme2?.forEach((theme) => {
+  //     categoryArrByTheme.push(theme.title);
+  //   })
+  // );
   const dublicateRemoving = Array.from(new Set(categoryArrByTheme));
   const items: INavigationItems[] = dublicateRemoving?.map((item) => {
     const subthemes = setSubthemes(cards, item);
