@@ -104,11 +104,6 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
   };
 
   return (
-    // <Filter
-    //   filterItems={navItems}
-    //   clickHandler={clickHandler}
-    //   title='Karty według nazwisk autorów czy nazw dzieł'
-    // />
     <section>
       <div className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
         <NavTitle title='Karty według nazwisk autorów czy nazw dzieł' />
@@ -136,9 +131,6 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
         </ul>
         {find ? (
           <div className={`mt-5 ${BAGROUNDS.PASSIVE} rounded-lg`}>
-            {/* <p className='font-bold underline text-center text-xl p-2 rounded-t-lg'>
-            {find.letter}
-          </p> */}
             <ul className='flex flex-col gap-y-2 justify-center  items-start  p-2 text-lg font-mono'>
               {find.items.map((v, i) => (
                 <li
