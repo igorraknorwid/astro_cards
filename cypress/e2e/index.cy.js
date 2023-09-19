@@ -23,4 +23,20 @@ describe("Test for 200 Response Status Code", () => {
         expect(response.status).to.eq(200);
       });
   });
+  it("Should return a 200 status code całość page", () => {
+    // Use cy.request() to send an HTTP GET request to the page
+    cy.request("GET", "http://localhost:3000/calosc?temat=historia") // Replace with your page URL
+      .then((response) => {
+        // Assert that the response status code is 200
+        expect(response.status).to.eq(200);
+      });
+  });
+  it("Should return a 200 status code całość page", () => {
+    // Use cy.request() to send an HTTP GET request to the page
+    cy.request("GET", "http://localhost:3000/temat?rok=1947&temat=historia") // Replace with your page URL
+      .then((response) => {
+        // Assert that the response status code is 200
+        expect(response.status).to.eq(200);
+      });
+  });
 });
