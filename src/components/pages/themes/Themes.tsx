@@ -2,6 +2,7 @@ import React from "react";
 import client from "../../../api/sanityClient";
 import Spinner from "../../common/spinner/Spinner";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
+import { groq_params } from "../../../api/groq/groq";
 
 interface ITheme {
   _id: string;
@@ -15,8 +16,8 @@ function Themes() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const query = `*[_type == "theme"]{ _id,
-          title,subtheme[]->{_id,title}, 
+        const query = `*[_type == "theme"]{
+           ${groq_params.theme_groq_params}
         }`;
         const result = await client.fetch<ITheme[]>(query);
         setData(result);

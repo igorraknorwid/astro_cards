@@ -7,6 +7,7 @@ import CardCounter from "../../common/card_couter/CardCounter";
 import CardList from "../../common/card_list/CardList";
 import TitleFilter from "../../filters/TitleFilter";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
+import { groq_params } from "../../../api/groq/groq";
 
 function CardsByCategory() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -36,12 +37,12 @@ function CardsByCategory() {
         setCategory(category);
         const subcategory = queryParams.get("subtemat");
         setSubCategory(subcategory);
-        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ _id,years[]->{title},title,image_slug,theme->{title},theme2[]->{title,_id}
+        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ ${groq_params.cards_groq_params}
         }`;
-        //     const query = `*[_type == 'card' && '${year}' in years[]->title && '${category}' in theme2[]->title]{ _id,years[]->{title},title,image_slug,theme->{title},theme2[]->{title,_id}
-        // }`;
-        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{ _id,years[]->{title},title,image_slug,theme->{title}}`;
-        // const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->'${category}' in theme2[]->title && subtheme->title == "${subcategory}" ]{ _id,years[]->{title},title,image_slug,theme->{title}}`;
+
+        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{
+          ${groq_params.cards_groq_params}
+      }`;
 
         const result = await client.fetch<ICardData[]>(
           subcategory ? queryWithSubcategory : query

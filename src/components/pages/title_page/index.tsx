@@ -7,6 +7,7 @@ import CardCounter from "../../common/card_couter/CardCounter";
 import CardList from "../../common/card_list/CardList";
 import CategoryFilter from "../../filters/CategoryFilter";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
+import { groq_params } from "../../../api/groq/groq";
 
 function CardsByTitle() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -39,7 +40,7 @@ function CardsByTitle() {
         setYear(year);
         const title = queryParams.get("nazwa");
         setTitle(title);
-        const query = `*[_type == 'card' && '${year}' in years[]->title && title == '${title}']{ _id, title,years[]->{title},image_slug,theme->{title},
+        const query = `*[_type == 'card' && '${year}' in years[]->title && title == '${title}']{ ${groq_params.cards_groq_params}
       }`;
         const result = await client.fetch<ICardData[]>(query);
         setData(

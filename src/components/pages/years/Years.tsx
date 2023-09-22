@@ -1,6 +1,7 @@
 import React from "react";
 import client from "../../../api/sanityClient";
 import Spinner from "../../common/spinner/Spinner";
+import { groq_params } from "../../../api/groq/groq";
 
 interface IYear {
   _id: string;
@@ -14,8 +15,8 @@ function Years() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const query = `*[_type == "year"]{ _id,
-          title,
+        const query = `*[_type == "year"]{
+           ${groq_params.years_groq_params}
         }`;
         const result = await client.fetch<IYear[]>(query);
         setData(result);

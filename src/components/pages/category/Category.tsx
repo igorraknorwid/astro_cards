@@ -7,6 +7,7 @@ import CardList from "../../common/card_list/CardList";
 import TitleFilter from "../../filters/TitleFilter";
 import { capitalizeFirstLetterInEveryWord } from "../../../utils/capitalize/capitalise";
 import { BAGROUNDS, FONTCOLOR } from "../../../utils/constants/colors";
+import { groq_params } from "../../../api/groq/groq";
 
 interface IFilter {
   title: string | null;
@@ -42,7 +43,7 @@ function Category() {
         const category = queryParams.get("temat");
         setCategory(category);
 
-        const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},theme2[]->{title,_id}
+        const query = `*[_type == 'card' && theme->title == "${category}"]{ ${groq_params.cards_groq_params}
       }`;
 
         const result = await client.fetch<ICardData[]>(query);
