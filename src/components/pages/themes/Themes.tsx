@@ -16,9 +16,7 @@ function Themes() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const query = `*[_type == "theme"]{
-           ${groq_params.theme_groq_params}
-        }`;
+        const query = `*[_type == "theme"]{${groq_params.theme_groq_params}}`;
         const result = await client.fetch<ITheme[]>(query);
         setData(result);
       } catch (error) {
