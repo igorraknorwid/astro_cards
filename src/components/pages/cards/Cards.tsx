@@ -11,6 +11,7 @@ import TitleNavigation from "../../navigation/TitleNavigation";
 import { ICard, ICardData } from "../../../types/card";
 
 import { groq_params } from "../../../api/groq/groq";
+import Breadcrumbs from "../../breadcrumbs/Breadcrumbs";
 
 function Cards() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -70,6 +71,7 @@ function Cards() {
     <div className='mx-2 md:mx-[5%]'>
       <YearTitle year={year} />
       <CardCounter cards={data} />
+      <Breadcrumbs />
       <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
         <div className='basis-2/3 border rounded-lg'>
           <CardList
