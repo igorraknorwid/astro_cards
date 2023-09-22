@@ -22,13 +22,9 @@ function CardList({
       .map((item, i) => ({ ...item, num: i + 1 }));
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return (
-      arr
-        //
-        .slice(startIndex, endIndex)
-    );
-    //
+    return arr.slice(startIndex, endIndex);
   };
+
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     window.scrollTo({
@@ -36,7 +32,7 @@ function CardList({
       behavior: "smooth",
     });
   };
-  console.log(cards, "cards test");
+  console.log(cards, "cards list test");
   return (
     <section>
       <Pagination

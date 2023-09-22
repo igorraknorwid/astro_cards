@@ -50,7 +50,7 @@ function Card({ card }: ICardComponent) {
     };
   }, [card.image_slug]);
   const years = card.years?.slice().map((obj) => obj);
-  // const themes_list = card.theme2?.slice().map((obj) => obj.title);
+  const themes_list = card.theme2?.slice().map((obj) => obj.title);
   return (
     <div
       key={card._id}
@@ -77,12 +77,12 @@ function Card({ card }: ICardComponent) {
               {capitalizeFirstLetterInEveryWord(card.title)}
             </span>
           </div>
-          <div className='py-1 px-2 rounded-lg'>
+          {/* <div className='py-1 px-2 rounded-lg'>
             <span>Temat: </span>
             <span className='font-bold'>
               {capitalizeFirstLetterInEveryWord(card.theme.title)}
             </span>
-          </div>
+          </div> */}
           <div className='py-1 px-2 rounded-lg flex gap-x-1'>
             <p>{years.length > 1 ? "Lata:" : "Rok:"}</p>
             <div className='font-bold'>
@@ -93,7 +93,7 @@ function Card({ card }: ICardComponent) {
               </ul>
             </div>
           </div>
-          {/* <div className='py-1 px-2 rounded-lg flex gap-x-1'>
+          <div className='py-1 px-2 rounded-lg flex gap-x-1'>
             <p>{themes_list?.length > 1 ? "Tematy:" : "Temat:"}</p>
             <div className='font-bold'>
               <ul className='flex gap-x-1'>
@@ -102,7 +102,7 @@ function Card({ card }: ICardComponent) {
                 ))}
               </ul>
             </div>
-          </div> */}
+          </div>
           {card.slug && (
             <div className=' py-1 px-2 rounded-lg'>
               <span>Nazwa: </span>

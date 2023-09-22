@@ -42,7 +42,7 @@ function Category() {
         const category = queryParams.get("temat");
         setCategory(category);
 
-        const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},
+        const query = `*[_type == 'card' && theme->title == "${category}"]{ _id, title,image_slug,years[]->{title},theme->{title},theme2[]->{title,_id}
       }`;
 
         const result = await client.fetch<ICardData[]>(query);

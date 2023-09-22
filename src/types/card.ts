@@ -28,7 +28,7 @@ export interface ICardData {
   title: string;
   image_slug: string;
   theme: ITheme;
-  themes: IThemes;
+  theme2?: ITheme[];
   subtheme?: ITheme;
   slug: string;
   warning: string;

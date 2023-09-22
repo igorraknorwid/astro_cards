@@ -1,8 +1,9 @@
 import React from "react";
 import { ICard, INavigation } from "../../types/card";
 import NavTitle from "../common/nav_title/NavTitle";
-import { BAGROUNDS } from "../../utils/constants/colors";
+// import { BAGROUNDS } from "../../utils/constants/colors";
 import { capitalizeFirstLetterInEveryWord } from "../../utils/capitalize/capitalise";
+
 interface ISubtheme {
   title: string;
   total: number;

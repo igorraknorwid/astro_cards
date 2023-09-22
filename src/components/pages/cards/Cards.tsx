@@ -1,12 +1,16 @@
 import React from "react";
 import client from "../../../api/sanityClient";
-import { ICard, ICardData } from "../../../types/card";
+
 import YearTitle from "../../common/year_title/YearTitle";
 import Spinner from "../../common/spinner/Spinner";
 import CardCounter from "../../common/card_couter/CardCounter";
 import CardList from "../../common/card_list/CardList";
 import CategoryNavigation from "../../navigation/CategoryNavigation";
 import TitleNavigation from "../../navigation/TitleNavigation";
+
+import { ICard, ICardData } from "../../../types/card";
+
+import { groq_params } from "../../../api/groq/groq";
 
 function Cards() {
   const [data, setData] = React.useState<ICard[] | null>(null);
@@ -24,12 +28,21 @@ function Cards() {
         const queryParams = new URLSearchParams(window.location.search);
         const year = queryParams.get("rok");
         setYear(year);
-        const query = `*[_type == "card" && '${year}' in years[]->title]{ _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},theme2[]->{title,_id},slug,warning}`;
-        const result = await client.fetch<ICardData[]>(query);
-        console.log(result, "TEST");
+        const query = `*[_type == "card" && '${year}' in years[]->title]{${groq_params.cards_groq_params}}`;
+        const fetchedData = await client.fetch<ICardData[]>(query);
+        console.log(fetchedData, "TEST");
+        const filteredResults = fetchedData.filter(
+          (item) =>
+            item._id &&
+            item.theme2 &&
+            item.theme &&
+            item.title &&
+            item.years &&
+            item.image_slug
+        );
 
         setData(
-          result.map((item) => {
+          filteredResults.map((item) => {
             return {
               ...item,
               years: item.years
