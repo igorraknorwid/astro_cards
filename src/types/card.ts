@@ -18,6 +18,7 @@ export interface ICard {
   theme: ITheme;
   theme2?: ITheme[];
   subtheme?: ITheme;
+  subtheme2: ITheme[];
   slug: string;
   warning: string;
   years: string[];
@@ -28,8 +29,9 @@ export interface ICardData {
   title: string;
   image_slug: string;
   theme: ITheme;
-  theme2?: ITheme[];
-  subtheme?: ITheme;
+  theme2: ITheme[];
+  subtheme: ITheme;
+  subtheme2: ITheme[];
   slug: string;
   warning: string;
   years: IYear[];

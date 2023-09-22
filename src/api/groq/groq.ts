@@ -2,7 +2,7 @@
 //   " _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},theme2[]->{title,_id},slug,warning";
 
 const cards_groq_params =
-  " _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},theme2[]->{title,_id},slug,warning";
+  " _id,title,image_slug,theme->{title,_id},subtheme->{title,_id},  years[]->{title},theme2[]->{title,_id},subtheme2[]->{title,_id},slug,warning";
 
 const years_groq_params = "_id,title,";
 

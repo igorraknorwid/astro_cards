@@ -23,28 +23,35 @@ function getTotal(arr: string[], value: string) {
 function setSubthemes(cards: ICard[], value: string) {
   let arr: string[] = [];
   cards.forEach((item) => {
-    if (item.theme.title === value && item.subtheme) {
-      arr.push(item.subtheme.title);
+    if (
+      item.theme2.map((el) => el.title).includes(value) &&
+      item.subtheme2 !== null
+    ) {
+      item.subtheme2.forEach((el) => arr.push(el.title));
     }
   });
   const subthemeSet = Array.from(new Set(arr));
-  return subthemeSet.map((item) => {
-    return {
-      title: item,
-      total: getTotal(arr, item),
-    };
-  });
+  return subthemeSet
+    .map((item) => {
+      return {
+        title: item,
+        total: getTotal(arr, item),
+      };
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
 }
 
 function CategoryNavigation({ cards, year }: INavigation) {
-  const categoryArrByTheme = cards.map((item) => item.theme.title);
-  // let categoryArrByTheme: string[] = [];
-  // cards.forEach((card) =>
-  //   card.theme2?.forEach((theme) => {
-  //     categoryArrByTheme.push(theme.title);
-  //   })
-  // );
+  // const categoryArrByTheme = cards.map((item) => item.theme.title);
+  let categoryArrByTheme: string[] = [];
+  cards.forEach((card) =>
+    card.theme2?.forEach((theme) => {
+      categoryArrByTheme.push(theme.title);
+    })
+  );
+
   const dublicateRemoving = Array.from(new Set(categoryArrByTheme));
+
   const items: INavigationItems[] = dublicateRemoving?.map((item) => {
     const subthemes = setSubthemes(cards, item);
     if (subthemes.length > 0) {
@@ -64,14 +71,14 @@ function CategoryNavigation({ cards, year }: INavigation) {
   return (
     <div className='bg-blue-200 py-2 px-4 rounded-lg'>
       <NavTitle title='Karty według tematów' />
-      <ul className='my-2  bg-white py-2 px-4 rounded-lg flex flex-col items-start gap-4 border text-sm font-mono'>
+      <ul className=' bg-white py-2 px-4 rounded-lg flex flex-col items-start gap-2 border text-sm font-mono'>
         {items.map((c, i) => (
           <li
             key={i}
-            className={` border basis-auto py-2 px-4 rounded-lg hover:border-blue-700 hover:scale-105 transition-transform shadow-md`}
+            className={` border basis-auto py-1 px-4 rounded-lg hover:border-blue-700 hover:scale-105 transition-transform shadow-md`}
           >
             <a href={`/temat?rok=${year}&temat=${c.title}`}>
-              <div className='flex gap-x-2 text-lg'>
+              <div className='flex gap-x-2 text-lg font-bold'>
                 <div>{capitalizeFirstLetterInEveryWord(c.title)}</div>
                 <div>
                   {c.total ? <div className='underline'>{c.total}</div> : null}
