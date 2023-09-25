@@ -37,7 +37,7 @@ function CardsByCategory() {
         setCategory(category);
         const subcategory = queryParams.get("subtemat");
         setSubCategory(subcategory);
-        const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ ${groq_params.cards_groq_params}
+        const query = `*[_type == 'card' && '${year}' in years[]->title && '${category}' in theme2[]->title]{ ${groq_params.cards_groq_params}
         }`;
 
         const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && '${category}' in theme2[]->title && '${subcategory}' in subtheme2[]->title ]{
