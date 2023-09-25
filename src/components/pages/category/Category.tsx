@@ -131,7 +131,10 @@ function Category() {
         </p>
         {subCategory && (
           <p>
-            Temat dodatkowy:<span className='font-bold'>{subCategory}</span>
+            Temat dodatkowy:
+            <span className='font-bold'>
+              {capitalizeFirstLetterInEveryWord(subCategory)}
+            </span>
           </p>
         )}
       </div>
