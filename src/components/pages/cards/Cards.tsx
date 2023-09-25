@@ -36,7 +36,6 @@ function Cards() {
           (item) =>
             item._id &&
             item.theme2 &&
-            item.theme &&
             item.title &&
             item.years &&
             item.image_slug

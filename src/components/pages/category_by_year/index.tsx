@@ -40,7 +40,7 @@ function CardsByCategory() {
         const query = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}"]{ ${groq_params.cards_groq_params}
         }`;
 
-        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && theme->title == "${category}" && subtheme->title == "${subcategory}" ]{
+        const queryWithSubcategory = `*[_type == 'card' && '${year}' in years[]->title && '${category}' in theme2[]->title && '${subcategory}' in subtheme2[]->title ]{
           ${groq_params.cards_groq_params}
       }`;
 

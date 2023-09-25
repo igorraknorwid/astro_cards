@@ -18,7 +18,7 @@ function CardList({
 }: ICardList) {
   const paginatedCards = (cards: ICard[]) => {
     const arr = [...cards]
-      .sort((a, b) => a.theme.title.localeCompare(b.theme.title))
+      .sort((a, b) => a.theme2[0].title.localeCompare(b.theme2[0].title))
       .map((item, i) => ({ ...item, num: i + 1 }));
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;

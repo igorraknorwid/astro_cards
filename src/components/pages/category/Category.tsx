@@ -43,7 +43,7 @@ function Category() {
         const category = queryParams.get("temat");
         setCategory(category);
 
-        const query = `*[_type == 'card' && theme->title == "${category}"]{ ${groq_params.cards_groq_params}
+        const query = `*[_type == 'card' && '${category}' in theme2[]->title]{ ${groq_params.cards_groq_params}
       }`;
 
         const result = await client.fetch<ICardData[]>(query);
