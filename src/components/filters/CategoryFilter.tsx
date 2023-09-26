@@ -21,8 +21,14 @@ function CategoryFilter({ cards, dataHandler }: IFilter) {
   const [navItems, setNavItems] = React.useState<IItem[] | null>(null);
 
   React.useEffect(() => {
-    const arrByTitle = cards.map((item) => item.theme.title);
+    let arrByTitle: string[] = [];
+    cards.forEach((card) =>
+      card.theme2?.forEach((theme) => {
+        arrByTitle.push(theme.title);
+      })
+    );
     const dublicateRemoving = Array.from(new Set(arrByTitle));
+
     const items: IItem[] = dublicateRemoving?.map((item) => {
       return {
         isActive: false,
