@@ -29,14 +29,14 @@ function MyPagination({
       <div
         className={`flex flex-col gap-x-2 justify-center items-center ${
           top ? "rounded-t-lg" : "rounded-b-lg"
-        } py-2 md:px-4 ${BAGROUNDS.SECONDARY}`}
+        } p-2 md:px-4 ${BAGROUNDS.SECONDARY}`}
       >
         <NavTitle title='Strony:' />
         <div>
           <Stack
-            spacing={2}
+            spacing={5}
             bgcolor={"white"}
-            padding={1}
+            padding={2}
             className='rounded-lg'
           >
             <Pagination
@@ -45,7 +45,7 @@ function MyPagination({
               boundaryCount={2}
               variant='outlined'
               color='primary'
-              size='large'
+              size='small'
               onChange={(_, num) => handlePageChange(num)}
               renderItem={(item) => (
                 <PaginationItem
