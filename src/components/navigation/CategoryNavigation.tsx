@@ -42,7 +42,6 @@ function setSubthemes(cards: ICard[], value: string) {
 }
 
 function CategoryNavigation({ cards, year }: INavigation) {
-  // const categoryArrByTheme = cards.map((item) => item.theme.title);
   let categoryArrByTheme: string[] = [];
   cards.forEach((card) =>
     card.theme2?.forEach((theme) => {
@@ -88,7 +87,7 @@ function CategoryNavigation({ cards, year }: INavigation) {
             {c.subthemes && (
               <ul className='flex flex-col items-end'>
                 {c.subthemes.map((subtheme, i) => (
-                  <li key={i}>
+                  <li key={i} className='hover:underline'>
                     <a
                       href={`/temat?rok=${year}&temat=${c.title}&subtemat=${subtheme.title}`}
                     >

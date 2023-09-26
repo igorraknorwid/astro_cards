@@ -85,7 +85,7 @@ function TitleNavigation({ cards, year }: INavigation) {
         </ul>
         {find ? (
           <div className={`mt-5 ${BAGROUNDS.PASSIVE} rounded-lg`}>
-            <ul className='flex flex-col gap-y-2 justify-center  items-start  p-2 text-lg font-mono'>
+            <ul className='flex flex-col gap-y-2 justify-center  items-start  p-2 text-base'>
               {find.items.map((v, i) => (
                 <li
                   key={i}

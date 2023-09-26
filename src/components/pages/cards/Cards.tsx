@@ -31,7 +31,6 @@ function Cards() {
         setYear(year);
         const query = `*[_type == "card" && '${year}' in years[]->title]{${groq_params.cards_groq_params}}`;
         const fetchedData = await client.fetch<ICardData[]>(query);
-        console.log(fetchedData, "TEST");
         const filteredResults = fetchedData.filter(
           (item) =>
             item._id &&

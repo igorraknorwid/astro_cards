@@ -45,7 +45,7 @@ function Years() {
       <ul className='flex flex-col gap-y-3 text-lg font-thin items-center md:items-start '>
         {sortedData?.map((item) => (
           <li
-            className='hover:underline border py-1 px-6 rounded-md'
+            className='hover:underline border py-1 px-6 rounded-md shadow-md'
             key={item._id}
           >
             <a href={`/kartki?rok=${item.title}`}>{item.title}</a>

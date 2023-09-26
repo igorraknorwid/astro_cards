@@ -45,7 +45,7 @@ function Themes() {
         {sortedData?.map((item) => (
           <li className='hover:underline ' key={item._id}>
             <a
-              className='border py-1 px-2 rounded-md'
+              className='border py-1 px-2 rounded-md shadow-md'
               href={`/calosc?temat=${item.title}`}
             >
               {capitalizeFirstLetterInEveryWord(item.title)}
