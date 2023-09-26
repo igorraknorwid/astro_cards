@@ -2,9 +2,11 @@
 import Years from "../components/pages/years/Years";
 import Themes from "../components/pages/themes/Themes";
 import Layout from "../layouts/Layout.astro";
+import AllProjectCards from "../components/allcards/AllProjectCards";
 ---
 
 <Layout title='Karty bibliograficzne'>
+  <AllProjectCards client:load />
   <p class='mx-2 mt-3 md:mx-[5%] text-xl font-mono'>Roczniki:</p>
   <Years client:load />
   <p class='mx-2 md:mx-[5%] text-xl font-mono'>Tematy:</p>
