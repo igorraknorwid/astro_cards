@@ -90,7 +90,7 @@ function CardsByCategory() {
   return (
     <div className='mx-2 md:mx-[5%]'>
       <YearTitle year={year} />
-      <div className='flex gap-x-2 justify-center text-lg'>
+      <div className='flex gap-4 justify-center text-lg'>
         <p>
           Temat:
           <span className='font-bold'>
@@ -105,7 +105,7 @@ function CardsByCategory() {
       </div>
 
       <CardCounter cards={filteredData} />
-      <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
+      <div className='flex flex-col md:flex-row gap-y-4 '>
         <div className='basis-2/3 border rounded-lg'>
           {filteredData && (
             <CardList
@@ -116,7 +116,7 @@ function CardsByCategory() {
             />
           )}
         </div>
-        <div className='basis-1/3 flex flex-col gap-4'>
+        <div className='basis-1/3 flex flex-col gap-4 mt-4'>
           <TitleFilter cards={data} dataHandler={setDataFilter} />
         </div>
       </div>

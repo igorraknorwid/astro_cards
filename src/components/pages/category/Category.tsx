@@ -140,7 +140,7 @@ function Category() {
       </div>
 
       <CardCounter cards={filteredData} />
-      <div className='flex flex-col md:flex-row md:gap-x-4 my-4'>
+      <div className='flex flex-col md:flex-row gap-4 '>
         <div className='basis-2/3 border rounded-lg'>
           {filteredData && (
             <CardList
@@ -155,7 +155,9 @@ function Category() {
           <TitleFilter cards={data} dataHandler={setDataFilter} />
 
           {years ? (
-            <div className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
+            <div
+              className={`${BAGROUNDS.SECONDARY} p-2 md:px-4 rounded-lg mb-4`}
+            >
               <ul
                 className={`${BAGROUNDS.PASSIVE} flex flex-col gap-y-2 py-2 px-3`}
               >

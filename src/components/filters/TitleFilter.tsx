@@ -105,7 +105,7 @@ function TitleFilter({ cards, dataHandler }: ITitleFilter) {
 
   return (
     <section>
-      <div className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
+      <div className={`${BAGROUNDS.SECONDARY} p-2 md:px-4 rounded-lg`}>
         <NavTitle title='Karty według nazwisk autorów czy nazw dzieł' />
 
         <ul
