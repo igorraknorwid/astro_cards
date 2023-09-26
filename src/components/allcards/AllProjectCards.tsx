@@ -1,7 +1,6 @@
 import React from "react";
 import client from "../../api/sanityClient";
 import Spinner from "../common/spinner/Spinner";
-import { groq_params } from "../../api/groq/groq";
 import { ICard } from "../../types/card";
 
 function AllProjectCards() {
