@@ -75,7 +75,7 @@ function CardsByTitle() {
     );
 
   return (
-    <div className='m-10'>
+    <div className='my-10'>
       <YearTitle year={year} />
       <p className='text-center text-lg'>
         Nazwa:
