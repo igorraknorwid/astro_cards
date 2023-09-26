@@ -33,7 +33,7 @@ function CardList({
     });
   };
   return (
-    <section>
+    <section className='bg-slate-100'>
       <Pagination
         cards={cards}
         itemsPerPage={itemsPerPage}
