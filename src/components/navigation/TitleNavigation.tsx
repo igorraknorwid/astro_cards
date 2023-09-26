@@ -63,7 +63,7 @@ function TitleNavigation({ cards, year }: INavigation) {
       <div className={`${BAGROUNDS.SECONDARY} p-2 md:p-4 rounded-lg`}>
         <NavTitle title='Karty według nazwisk autorów czy nazw dzieł' />
         <ul
-          className={`grid grid-cols-6 gap-4 py-2 px-3 rounded-lg ${BAGROUNDS.PASSIVE}`}
+          className={`grid grid-cols-6 gap-4 py-2 px-3 rounded-lg ${BAGROUNDS.PASSIVE} text-base`}
         >
           {data?.map((item, i) => (
             <li key={i}>

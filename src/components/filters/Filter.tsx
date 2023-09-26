@@ -4,17 +4,16 @@ import { BAGROUNDS, FONTCOLOR } from "../../utils/constants/colors";
 import NavTitle from "../common/nav_title/NavTitle";
 import { IFilterItem } from "../../types/filters";
 
-interface IFilter{
-  title:string;
-  filterItems:IFilterItem[];
-  clickHandler(iten:IFilterItem):void
+interface IFilter {
+  title: string;
+  filterItems: IFilterItem[];
+  clickHandler(iten: IFilterItem): void;
 }
 
-
-function Filter({filterItems,clickHandler,title}: IFilter) {
+function Filter({ filterItems, clickHandler, title }: IFilter) {
   return (
     <section className={`${BAGROUNDS.SECONDARY} py-2 md:px-4 rounded-lg`}>
-      <NavTitle title={title}/>
+      <NavTitle title={title} />
       <div className={` ${BAGROUNDS.PASSIVE}  py-2 px-3 rounded-lg`}>
         <ul className='flex items-start flex-col gap-4 text-lg '>
           {filterItems?.map((ni, i) => (
