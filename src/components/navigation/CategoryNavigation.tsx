@@ -71,14 +71,14 @@ function CategoryNavigation({ cards, year }: INavigation) {
   return (
     <div className='bg-blue-200 py-2 px-4 rounded-lg'>
       <NavTitle title='Karty według tematów' />
-      <ul className=' bg-white py-2 px-4 rounded-lg flex flex-col items-start gap-2 border text-sm font-mono'>
+      <ul className=' bg-white py-2 px-4 rounded-lg flex flex-col items-start gap-2 border text-sm '>
         {items.map((c, i) => (
           <li
             key={i}
             className={` border basis-auto py-1 px-4 rounded-lg hover:border-blue-700 hover:scale-105 transition-transform shadow-md`}
           >
             <a href={`/temat?rok=${year}&temat=${c.title}`}>
-              <div className='flex gap-x-2 text-lg font-bold'>
+              <div className='flex gap-x-2 text-base'>
                 <div>{capitalizeFirstLetterInEveryWord(c.title)}</div>
                 <div>
                   {c.total ? <div className='underline'>{c.total}</div> : null}
