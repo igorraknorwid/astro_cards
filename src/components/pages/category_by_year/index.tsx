@@ -88,7 +88,7 @@ function CardsByCategory() {
     );
 
   return (
-    <div className='m-10'>
+    <div className='mx-2 md:mx-[5%]'>
       <YearTitle year={year} />
       <div className='flex gap-x-2 justify-center text-lg'>
         <p>

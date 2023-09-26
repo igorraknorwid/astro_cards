@@ -18,7 +18,7 @@ const { title } = Astro.props;
   </head>
   <body class='flex flex-col min-h-screen'>
     <header class='flex-none bg-blue-600 text-white py-5 font-bold'>
-      <div class='mx-2 md:mx-[5%] flex justify-between'>
+      <div class='mx-2 md:mx-[5%] flex justify-between flex-wrap gap-y-2'>
         <h1 class='text-lg md:text-3xl'>
           <a href='/' title='home'>Bibliografia Ziemi Lubuskiej 1945-1989</a>
         </h1>
@@ -51,7 +51,7 @@ const { title } = Astro.props;
   }
   html {
     font-family: system-ui, sans-serif;
-    background-color: #f6f6f6;
+    background-color: white;
   }
   code {
     font-family: Menlo, Monaco, Lucida Console, Liberation Mono,

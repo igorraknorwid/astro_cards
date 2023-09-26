@@ -45,7 +45,7 @@ function MyPagination({
               boundaryCount={2}
               variant='outlined'
               color='primary'
-              size='small'
+              size='medium'
               onChange={(_, num) => handlePageChange(num)}
               renderItem={(item) => (
                 <PaginationItem

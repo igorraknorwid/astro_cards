@@ -121,7 +121,7 @@ function Category() {
     );
 
   return (
-    <div className='my-10'>
+    <div className='mx-2 md:mx-[5%]'>
       <div className='flex gap-x-2 justify-center text-lg'>
         <p>
           Temat:
