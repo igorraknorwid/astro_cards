@@ -34,7 +34,7 @@ function AllProjectCards() {
     <div className='py-5 mx-2 md:mx-[5%] flex flex-col items-center md:items-start gap-y-4'>
       <div className='text-lg font-thin'>
         {" "}
-        Łączna liczba kart bibliograficznych:{data.length + 1}
+        Łączna aktualna liczba kart bibliograficznych:{data.length + 1}
       </div>
     </div>
   );
