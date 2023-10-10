@@ -18,8 +18,9 @@ function Years() {
         const query = `*[_type == "year"]{
            ${groq_params.years_groq_params}
         }`;
-        const result = await client.fetch<IYear[]>(query);
-        setData(result);
+        const results = await client.fetch<IYear[]>(query);
+
+        setData(results);
       } catch (error) {
         setIsError(true);
         console.error("Error fetching data from Sanity:", error);

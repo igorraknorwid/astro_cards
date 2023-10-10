@@ -17,8 +17,9 @@ function Themes() {
     const fetchData = async () => {
       try {
         const query = `*[_type == "theme"]{${groq_params.theme_groq_params}}`;
-        const result = await client.fetch<ITheme[]>(query);
-        setData(result);
+        const results = await client.fetch<ITheme[]>(query);
+        // console.log(results);
+        setData(results);
       } catch (error) {
         setIsError(true);
         console.error("Error fetching data from Sanity:", error);

@@ -51,21 +51,23 @@ function CategoryNavigation({ cards, year }: INavigation) {
 
   const dublicateRemoving = Array.from(new Set(categoryArrByTheme));
 
-  const items: INavigationItems[] = dublicateRemoving?.map((item) => {
-    const subthemes = setSubthemes(cards, item);
-    if (subthemes.length > 0) {
-      return {
-        title: item,
-        total: categoryArrByTheme ? getTotal(categoryArrByTheme, item) : 0,
-        subthemes,
-      };
-    } else {
-      return {
-        title: item,
-        total: categoryArrByTheme ? getTotal(categoryArrByTheme, item) : 0,
-      };
-    }
-  });
+  const items: INavigationItems[] = dublicateRemoving
+    ?.map((item) => {
+      const subthemes = setSubthemes(cards, item);
+      if (subthemes.length > 0) {
+        return {
+          title: item,
+          total: categoryArrByTheme ? getTotal(categoryArrByTheme, item) : 0,
+          subthemes,
+        };
+      } else {
+        return {
+          title: item,
+          total: categoryArrByTheme ? getTotal(categoryArrByTheme, item) : 0,
+        };
+      }
+    })
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   return (
     <div className='bg-blue-200 py-2 px-4 rounded-lg'>
